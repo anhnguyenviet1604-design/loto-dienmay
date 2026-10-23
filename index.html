@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lô Tô Chợ Lớn Quảng Ngãi 1 - Mừng Sinh Nhật Thứ 9</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Thư viện hiệu ứng pháo hoa giấy Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <style>
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(234, 179, 8, 0.6)); }
+      50% { transform: scale(1.08); filter: drop-shadow(0 0 35px rgba(239, 68, 68, 0.9)); }
+    }
+    .calling-anim {
+      animation: pulseGlow 0.9s infinite ease-in-out;
+    }
+    .called {
+      background: radial-gradient(circle, #f59e0b 0%, #b45309 100%) !important;
+      color: #ffffff !important;
+      font-weight: 800;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.8);
+      border-color: #fbbf24 !important;
+    }
+    @keyframes revealPop {
+      0% { transform: scale(0.3); opacity: 0; }
+      80% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .reveal-active {
+      animation: revealPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    .loto-cell {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      border-radius: 0.75rem;
+      background-color: rgba(2, 6, 23, 0.85);
+      border: 1px solid rgba(51, 65, 85, 0.8);
+      color: #94a3b8;
+      font-weight: 700;
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    /* Hiệu ứng nhấp nháy đèn neon toàn màn hình cho người trúng thưởng */
+    @keyframes flashNeon {
+      0%, 100% {
+        color: #fde047;
+        text-shadow: 0 0 20px #eab308, 0 0 50px #ef4444, 0 0 80px #dc2626;
+        transform: scale(1);
+      }
+      50% {
+        color: #ffffff;
+        text-shadow: 0 0 30px #f43f5e, 0 0 70px #ec4899, 0 0 110px #f59e0b;
+        transform: scale(1.04);
+      }
+    }
+    .neon-blink {
+      animation: flashNeon 0.65s infinite alternate ease-in-out;
+    }
+
+    @keyframes borderPulse {
+      0%, 100% { border-color: rgba(234, 179, 8, 0.8); box-shadow: inset 0 0 30px rgba(234, 179, 8, 0.3), 0 0 50px rgba(234, 179, 8, 0.4); }
+      50% { border-color: rgba(239, 68, 68, 0.9); box-shadow: inset 0 0 45px rgba(239, 68, 68, 0.5), 0 0 80px rgba(239, 68, 68, 0.6); }
+    }
+    .modal-glow {
+      animation: borderPulse 0.9s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col items-center p-3 sm:p-5 select-none relative">
+
+  <!-- MÀN HÌNH CHÚC MỪNG TOÀN MÀN HÌNH (POPUP OVERLAY) -->
+  <div id="winnerOverlay" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex flex-col items-center justify-center p-6 cursor-pointer">
+    <div class="max-w-4xl w-full bg-slate-900/95 border-4 border-amber-400 rounded-3xl p-8 sm:p-12 text-center modal-glow relative flex flex-col items-center">
+      <span class="text-5xl sm:text-7xl mb-3">👑 🏆 🎊</span>
+      
+      <h2 class="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-wider text-amber-400 neon-blink leading-tight mb-4">
+        XIN CHÚC MỪNG NGƯỜI TRÚNG THƯỞNG!
+      </h2>
+
+      <p id="winnerSubDetails" class="text-xl sm:text-3xl font-extrabold text-white mt-2">
+        Chúc mừng người chơi may mắn sở hữu con số trúng giải:
+      </p>
+
+      <div id="winnerNumberBadge" class="my-6 px-10 py-4 bg-gradient-to-r from-amber-500 via-rose-500 to-amber-500 text-slate-950 text-7xl sm:text-9xl font-black rounded-3xl shadow-2xl tracking-wider">
+        --
+      </div>
+
+      <p class="text-sm sm:text-base text-slate-400 mt-2 italic">
+        (Bấm chuột hoặc gõ phím bất kỳ để đóng màn hình chúc mừng)
+      </p>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="w-full max-w-6xl flex flex-wrap justify-between items-center py-2 px-4 bg-slate-900/80 border border-slate-800 rounded-2xl gap-3 shadow-lg">
+    <div class="flex items-center gap-3">
+      <span class="text-3xl">🎉</span>
+      <div>
+        <h1 class="text-base sm:text-lg font-black tracking-wider text-amber-400 uppercase">SÂN KHẤU LÔ TÔ ĐIỆN MÁY CHỢ LỚN QUẢNG NGÃI 1</h1>
+        <p class="text-xs font-semibold text-rose-400">🎂 Mừng Sinh Nhật Lần Thứ 9 Siêu Thị Điện Máy CHỢ LỚN QUẢNG NGÃI 1</p>
+      </div>
+    </div>
+    
+    <div class="flex items-center gap-2">
+      <input type="file" id="folderInput" webkitdirectory directory multiple class="hidden" accept="audio/*">
+      <button id="btnFolder" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow">
+        📁 Nạp Thư Mục MP3
+      </button>
+      <span id="folderStatus" class="text-xs text-slate-400 bg-slate-950/60 px-2.5 py-1 rounded border border-slate-800">
+        Giọng TTS mặc định
+      </span>
+      <button id="btnReset" class="ml-2 px-3 py-1.5 bg-rose-900/50 hover:bg-rose-800 text-rose-300 text-xs font-semibold rounded-lg border border-rose-800/60 transition">
+        Ván Mới
+      </button>
+    </div>
+  </header>
+
+  <!-- Khu Vực Trung Tâm -->
+  <main class="w-full max-w-6xl my-4 grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
+    
+    <!-- Màn hình chiếu TV -->
+    <div class="lg:col-span-8 bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-slate-800 rounded-3xl p-6 flex flex-col items-center justify-center relative overflow-hidden shadow-2xl min-h-[300px]">
+      <div id="statusBadge" class="absolute top-4 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-slate-800 text-slate-400 border border-slate-700">
+        Đang chờ lượt quay
+      </div>
+
+      <div id="bigDisplay" class="text-8xl sm:text-9xl font-black text-amber-400 my-2 tracking-tight transition-all">
+        --
+      </div>
+
+      <div id="subText" class="text-sm font-medium text-slate-400 tracking-wide text-center">
+        MC đang chuẩn bị lồng cầu...
+      </div>
+    </div>
+
+    <!-- Bảng Điều Khiển Của MC -->
+    <div class="lg:col-span-4 bg-slate-900 border border-slate-800 rounded-3xl p-5 flex flex-col justify-between shadow-xl">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <label for="secretInput" class="text-xs font-bold uppercase text-slate-400 tracking-wider">
+            MC Nhập Số (Ẩn)
+          </label>
+          <span id="callCount" class="text-xs font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20">
+            Đã gọi: 0 / 90
+          </span>
+        </div>
+
+        <div class="relative">
+          <input 
+            type="password" 
+            id="secretInput" 
+            maxlength="2"
+            inputmode="numeric"
+            placeholder="••" 
+            autocomplete="off"
+            class="w-full bg-slate-950 border-2 border-slate-700 focus:border-amber-400 rounded-2xl py-2.5 px-4 text-3xl font-black text-center text-amber-300 tracking-[0.5em] focus:outline-none transition shadow-inner"
+          />
+        </div>
+        <p class="text-[11px] text-slate-500 mt-1.5 text-center">
+          Quay lồng &rarr; gõ 2 số &rarr; bấm <kbd class="px-1.5 py-0.5 bg-slate-800 rounded text-amber-300 border border-slate-700">Enter</kbd>
+        </p>
+
+        <div class="mt-3 space-y-2">
+          <button id="btnTrigger" class="w-full py-3 bg-amber-500 hover:bg-amber-400 active:scale-[0.98] text-slate-950 text-sm font-black rounded-xl uppercase tracking-wider transition shadow-lg shadow-amber-500/20">
+            🎤 Bắt Đầu Hát Rao
+          </button>
+          <button id="btnSkipSound" class="w-full py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg transition">
+            Mở số ngay (Bỏ qua chờ hát)
+          </button>
+        </div>
+      </div>
+
+      <!-- KHU VỰC 3 NÚT NHẠC ĂN MỪNG CHIẾN THẮNG -->
+      <div class="mt-4 pt-3 border-t border-slate-800">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-[11px] font-extrabold uppercase tracking-wider text-rose-400 flex items-center gap-1">
+            🏆 Nhạc Ăn Mừng "Kinh!"
+          </span>
+          <span class="text-[10px] text-slate-500">Bấm khi có người trúng</span>
+        </div>
+        
+        <div class="grid grid-cols-3 gap-2">
+          <button id="btnVictory1" title="Nhạc Kèn Chiến Thắng Rực Rỡ" class="px-2 py-2.5 bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-500 hover:to-yellow-500 active:scale-95 text-white font-bold text-xs rounded-xl shadow-md transition flex flex-col items-center justify-center gap-1">
+            <span class="text-base">🎺</span>
+            <span>Kèn Thắng</span>
+          </button>
+
+          <button id="btnVictory2" title="Tiếng Còi Tiệc & Pháo Hoa Bắn Tưng Bừng" class="px-2 py-2.5 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 active:scale-95 text-white font-bold text-xs rounded-xl shadow-md transition flex flex-col items-center justify-center gap-1">
+            <span class="text-base">🎆</span>
+            <span>Pháo Tiệc</span>
+          </button>
+
+          <button id="btnVictory3" title="Tiếng Trống Hội & Hoan Hô Náo Nhiệt" class="px-2 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-95 text-white font-bold text-xs rounded-xl shadow-md transition flex flex-col items-center justify-center gap-1">
+            <span class="text-base">👏</span>
+            <span>Trống Hội</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Bàn cờ ma trận 90 số cố định trên HTML -->
+  <section class="w-full max-w-6xl bg-slate-900/60 border border-slate-800 rounded-3xl p-4 sm:p-5 shadow-2xl">
+    <div class="flex justify-between items-center mb-3 px-1">
+      <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Bảng Dò Số (1 - 90)</span>
+      <span class="text-xs text-amber-400 font-medium">Ô sáng đèn là số đã gọi</span>
+    </div>
+    <div class="grid grid-cols-10 gap-1.5 sm:gap-2 text-center" id="boardGrid">
+      <div id="cell-1" class="loto-cell">01</div><div id="cell-2" class="loto-cell">02</div><div id="cell-3" class="loto-cell">03</div><div id="cell-4" class="loto-cell">04</div><div id="cell-5" class="loto-cell">05</div><div id="cell-6" class="loto-cell">06</div><div id="cell-7" class="loto-cell">07</div><div id="cell-8" class="loto-cell">08</div><div id="cell-9" class="loto-cell">09</div><div id="cell-10" class="loto-cell">10</div>
+      <div id="cell-11" class="loto-cell">11</div><div id="cell-12" class="loto-cell">12</div><div id="cell-13" class="loto-cell">13</div><div id="cell-14" class="loto-cell">14</div><div id="cell-15" class="loto-cell">15</div><div id="cell-16" class="loto-cell">16</div><div id="cell-17" class="loto-cell">17</div><div id="cell-18" class="loto-cell">18</div><div id="cell-19" class="loto-cell">19</div><div id="cell-20" class="loto-cell">20</div>
+      <div id="cell-21" class="loto-cell">21</div><div id="cell-22" class="loto-cell">22</div><div id="cell-23" class="loto-cell">23</div><div id="cell-24" class="loto-cell">24</div><div id="cell-25" class="loto-cell">25</div><div id="cell-26" class="loto-cell">26</div><div id="cell-27" class="loto-cell">27</div><div id="cell-28" class="loto-cell">28</div><div id="cell-29" class="loto-cell">29</div><div id="cell-30" class="loto-cell">30</div>
+      <div id="cell-31" class="loto-cell">31</div><div id="cell-32" class="loto-cell">32</div><div id="cell-33" class="loto-cell">33</div><div id="cell-34" class="loto-cell">34</div><div id="cell-35" class="loto-cell">35</div><div id="cell-36" class="loto-cell">36</div><div id="cell-37" class="loto-cell">37</div><div id="cell-38" class="loto-cell">38</div><div id="cell-39" class="loto-cell">39</div><div id="cell-40" class="loto-cell">40</div>
+      <div id="cell-41" class="loto-cell">41</div><div id="cell-42" class="loto-cell">42</div><div id="cell-43" class="loto-cell">43</div><div id="cell-44" class="loto-cell">44</div><div id="cell-45" class="loto-cell">45</div><div id="cell-46" class="loto-cell">46</div><div id="cell-47" class="loto-cell">47</div><div id="cell-48" class="loto-cell">48</div><div id="cell-49" class="loto-cell">49</div><div id="cell-50" class="loto-cell">50</div>
+      <div id="cell-51" class="loto-cell">51</div><div id="cell-52" class="loto-cell">52</div><div id="cell-53" class="loto-cell">53</div><div id="cell-54" class="loto-cell">54</div><div id="cell-55" class="loto-cell">55</div><div id="cell-56" class="loto-cell">56</div><div id="cell-57" class="loto-cell">57</div><div id="cell-58" class="loto-cell">58</div><div id="cell-59" class="loto-cell">59</div><div id="cell-60" class="loto-cell">60</div>
+      <div id="cell-61" class="loto-cell">61</div><div id="cell-62" class="loto-cell">62</div><div id="cell-63" class="loto-cell">63</div><div id="cell-64" class="loto-cell">64</div><div id="cell-65" class="loto-cell">65</div><div id="cell-66" class="loto-cell">66</div><div id="cell-67" class="loto-cell">67</div><div id="cell-68" class="loto-cell">68</div><div id="cell-69" class="loto-cell">69</div><div id="cell-70" class="loto-cell">70</div>
+      <div id="cell-71" class="loto-cell">71</div><div id="cell-72" class="loto-cell">72</div><div id="cell-73" class="loto-cell">73</div><div id="cell-74" class="loto-cell">74</div><div id="cell-75" class="loto-cell">75</div><div id="cell-76" class="loto-cell">76</div><div id="cell-77" class="loto-cell">77</div><div id="cell-78" class="loto-cell">78</div><div id="cell-79" class="loto-cell">79</div><div id="cell-80" class="loto-cell">80</div>
+      <div id="cell-81" class="loto-cell">81</div><div id="cell-82" class="loto-cell">82</div><div id="cell-83" class="loto-cell">83</div><div id="cell-84" class="loto-cell">84</div><div id="cell-85" class="loto-cell">85</div><div id="cell-86" class="loto-cell">86</div><div id="cell-87" class="loto-cell">87</div><div id="cell-88" class="loto-cell">88</div><div id="cell-89" class="loto-cell">89</div><div id="cell-90" class="loto-cell">90</div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const customAudioMap = new Map();
+      const calledNumbers = new Set();
+      let currentAudio = null;
+      let pendingNumber = null;
+      let isCalling = false;
+      let lastCalledNumber = null;
+
+      // Web Audio API Context cho 3 nút ăn mừng
+      let audioCtx = null;
+      function getAudioContext() {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        return audioCtx;
+      }
+
+      // DOM Elements
+      const folderInput = document.getElementById('folderInput');
+      const btnFolder = document.getElementById('btnFolder');
+      const folderStatus = document.getElementById('folderStatus');
+      const secretInput = document.getElementById('secretInput');
+      const btnTrigger = document.getElementById('btnTrigger');
+      const btnSkipSound = document.getElementById('btnSkipSound');
+      const btnReset = document.getElementById('btnReset');
+      const bigDisplay = document.getElementById('bigDisplay');
+      const statusBadge = document.getElementById('statusBadge');
+      const subText = document.getElementById('subText');
+      const callCount = document.getElementById('callCount');
+
+      // Elements của Popup Toàn Màn Hình
+      const winnerOverlay = document.getElementById('winnerOverlay');
+      const winnerNumberBadge = document.getElementById('winnerNumberBadge');
+      const winnerSubDetails = document.getElementById('winnerSubDetails');
+
+      // 3 Nút Ăn Mừng
+      const btnVictory1 = document.getElementById('btnVictory1');
+      const btnVictory2 = document.getElementById('btnVictory2');
+      const btnVictory3 = document.getElementById('btnVictory3');
+
+      // Nạp thư mục MP3 giọng thật
+      btnFolder.addEventListener('click', () => folderInput.click());
+      folderInput.addEventListener('change', (e) => {
+        const files = e.target.files;
+        if (!files.length) return;
+
+        customAudioMap.forEach(url => URL.revokeObjectURL(url));
+        customAudioMap.clear();
+
+        let count = 0;
+        for (const file of files) {
+          const match = file.name.match(/^0*(\d+)\.(mp3|wav|m4a|ogg)$/i);
+          if (match) {
+            const num = parseInt(match[1], 10);
+            if (num >= 1 && num <= 90) {
+              customAudioMap.set(num, URL.createObjectURL(file));
+              count++;
+            }
+          }
+        }
+
+        if (count > 0) {
+          folderStatus.textContent = `Đã nạp ${count}/90 MP3`;
+          folderStatus.className = 'text-xs text-emerald-400 font-semibold bg-emerald-950/50 px-2.5 py-1 rounded border border-emerald-800';
+        }
+      });
+
+      // Mở số khi kết thúc câu hát
+      function revealNumber(num) {
+        isCalling = false;
+        pendingNumber = null;
+        lastCalledNumber = num;
+
+        bigDisplay.classList.remove('calling-anim', 'text-amber-500');
+        bigDisplay.classList.add('reveal-active', 'text-amber-400');
+        bigDisplay.textContent = num < 10 ? `0${num}` : num;
+
+        statusBadge.textContent = 'CON SỐ GÌ RA!';
+        statusBadge.className = 'absolute top-4 px-4 py-1 rounded-full text-xs font-extrabold uppercase tracking-widest bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/30';
+        
+        subText.textContent = `Chính thức kêu con số: ${num}`;
+        subText.className = 'text-base font-bold text-amber-300 tracking-wide text-center';
+
+        // Đánh dấu bảng 90 số
+        calledNumbers.add(num);
+        const cell = document.getElementById(`cell-${num}`);
+        if (cell) cell.classList.add('called');
+
+        callCount.textContent = `Đã gọi: ${calledNumbers.size} / 90`;
+
+        secretInput.value = '';
+        secretInput.focus();
+      }
+
+      // Bắt đầu gọi
+      function startCalling() {
+        if (isCalling) return;
+
+        const rawVal = secretInput.value.trim();
+        const num = parseInt(rawVal, 10);
+
+        if (isNaN(num) || num < 1 || num > 90) {
+          secretInput.value = '';
+          secretInput.focus();
+          return;
+        }
+
+        if (calledNumbers.has(num)) {
+          alert(`Số ${num} này đã được gọi trước đó rồi!`);
+          secretInput.value = '';
+          secretInput.focus();
+          return;
+        }
+
+        isCalling = true;
+        pendingNumber = num;
+
+        bigDisplay.classList.remove('reveal-active');
+        bigDisplay.classList.add('calling-anim');
+        bigDisplay.textContent = '??';
+
+        statusBadge.textContent = 'ĐANG HÁT RAO SỐ...';
+        statusBadge.className = 'absolute top-4 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-rose-600 text-white animate-pulse';
+
+        subText.textContent = 'Lắng nghe câu vè đoán xem con số mấy...';
+        subText.className = 'text-sm font-semibold text-rose-300 italic text-center';
+
+        secretInput.value = '';
+
+        playAudioAndWait(num);
+      }
+
+      // Phát âm thanh và chờ onended
+      function playAudioAndWait(num) {
+        if (currentAudio) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+        }
+        window.speechSynthesis.cancel();
+
+        if (customAudioMap.has(num)) {
+          currentAudio = new Audio(customAudioMap.get(num));
+          currentAudio.play().catch(e => {
+            console.error("Lỗi phát audio:", e);
+            revealNumber(num);
+          });
+
+          currentAudio.onended = () => {
+            revealNumber(num);
+          };
+          return;
+        }
+
+        if ('speechSynthesis' in window) {
+          const text = `Cờ ra con mấy, con số gì ra, con gì nó ra đây... Lẳng lặng mà nghe con số ${num}`;
+          const utter = new SpeechSynthesisUtterance(text);
+          utter.lang = 'vi-VN';
+          utter.rate = 0.95;
+
+          utter.onend = () => revealNumber(num);
+          utter.onerror = () => revealNumber(num);
+
+          window.speechSynthesis.speak(utter);
+        } else {
+          setTimeout(() => revealNumber(num), 3000);
+        }
+      }
+
+      // ==========================================
+      // XỬ LÝ MÀN HÌNH CHÚC MỪNG TOÀN MÀN HÌNH
+      // ==========================================
+
+      function triggerContinuousConfetti() {
+        if (typeof confetti === 'function') {
+          confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
+          setTimeout(() => {
+            confetti({ particleCount: 70, angle: 60, spread: 60, origin: { x: 0 } });
+            confetti({ particleCount: 70, angle: 120, spread: 60, origin: { x: 1 } });
+          }, 300);
+        }
+      }
+
+      function openWinnerCelebration() {
+        // Cập nhật con số hiển thị trên popup
+        if (lastCalledNumber !== null) {
+          const formatted = lastCalledNumber < 10 ? `0${lastCalledNumber}` : lastCalledNumber;
+          winnerNumberBadge.textContent = `SỐ ${formatted}`;
+          winnerSubDetails.textContent = `Chúc mừng người chơi may mắn sở hữu con số trúng giải:`;
+        } else {
+          winnerNumberBadge.textContent = `K I N H !`;
+          winnerSubDetails.textContent = `Chúc mừng quý khách hàng may mắn trúng thưởng!`;
+        }
+
+        // Hiện popup toàn màn hình
+        winnerOverlay.classList.remove('hidden');
+
+        // Bắn pháo hoa rực rỡ
+        triggerContinuousConfetti();
+
+        // Cập nhật text trên màn hình chính
+        statusBadge.textContent = '🏆 XIN CHÚC MỪNG NGƯỜI TRÚNG THƯỞNG!';
+        statusBadge.className = 'absolute top-4 px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-gradient-to-r from-yellow-400 to-amber-500 text-slate-950 shadow-xl shadow-amber-500/50 animate-bounce';
+      }
+
+      // Đóng màn hình chúc mừng khi click hoặc gõ phím
+      function closeWinnerOverlay() {
+        winnerOverlay.classList.add('hidden');
+        secretInput.focus();
+      }
+
+      winnerOverlay.addEventListener('click', closeWinnerOverlay);
+      window.addEventListener('keydown', (e) => {
+        if (!winnerOverlay.classList.contains('hidden') && e.key === 'Escape') {
+          closeWinnerOverlay();
+        }
+      });
+
+      // LOẠI 1: Nhạc Kèn Fanfare Chiến Thắng
+      btnVictory1.addEventListener('click', () => {
+        openWinnerCelebration();
+
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const notes = [
+          { f: 523.25, d: 0.15, p: 0.00 }, // C5
+          { f: 659.25, d: 0.15, p: 0.18 }, // E5
+          { f: 783.99, d: 0.15, p: 0.36 }, // G5
+          { f: 1046.50, d: 0.50, p: 0.54 }, // C6
+          { f: 783.99, d: 0.18, p: 1.10 }, // G5
+          { f: 1046.50, d: 0.70, p: 1.30 }  // C6
+        ];
+
+        notes.forEach(n => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(n.f, now + n.p);
+          gain.gain.setValueAtTime(0, now + n.p);
+          gain.gain.linearRampToValueAtTime(0.4, now + n.p + 0.04);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + n.p + n.d);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + n.p);
+          osc.stop(now + n.p + n.d + 0.1);
+        });
+      });
+
+      // LOẠI 2: Pháo Hoa & Còi Tiệc
+      btnVictory2.addEventListener('click', () => {
+        openWinnerCelebration();
+
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(300, now);
+        osc.frequency.exponentialRampToValueAtTime(800, now + 0.4);
+        osc.frequency.setValueAtTime(800, now + 0.4);
+        osc.frequency.exponentialRampToValueAtTime(450, now + 1.2);
+        gain.gain.setValueAtTime(0.35, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 1.2);
+      });
+
+      // LOẠI 3: Trống Hội & Vỗ Tay Hoan Hô
+      btnVictory3.addEventListener('click', () => {
+        openWinnerCelebration();
+
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+
+        const beats = [0.0, 0.2, 0.4, 0.6, 0.75, 0.9, 1.2];
+        beats.forEach((timeOffset, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          const freq = (idx === beats.length - 1) ? 140 : 100;
+          osc.frequency.setValueAtTime(freq, now + timeOffset);
+          osc.frequency.exponentialRampToValueAtTime(30, now + timeOffset + 0.2);
+          gain.gain.setValueAtTime(0.55, now + timeOffset);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + timeOffset + 0.25);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + timeOffset);
+          osc.stop(now + timeOffset + 0.3);
+        });
+
+        // Giả lập tiếng vỗ tay
+        const bufferSize = ctx.sampleRate * 1.5;
+        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          output[i] = Math.random() * 2 - 1;
+        }
+
+        const whiteNoise = ctx.createBufferSource();
+        whiteNoise.buffer = noiseBuffer;
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.value = 1200;
+
+        const noiseGain = ctx.createGain();
+        noiseGain.gain.setValueAtTime(0.01, now + 0.3);
+        noiseGain.gain.linearRampToValueAtTime(0.3, now + 0.7);
+        noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 2.0);
+
+        whiteNoise.connect(filter);
+        filter.connect(noiseGain);
+        noiseGain.connect(ctx.destination);
+        whiteNoise.start(now + 0.3);
+        whiteNoise.stop(now + 2.1);
+      });
+
+      // Phím bấm điều khiển
+      secretInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') startCalling();
+      });
+      btnTrigger.addEventListener('click', startCalling);
+
+      btnSkipSound.addEventListener('click', () => {
+        if (isCalling && pendingNumber) {
+          if (currentAudio) currentAudio.pause();
+          window.speechSynthesis.cancel();
+          revealNumber(pendingNumber);
+        }
+      });
+
+      // Bắt đầu ván mới
+      btnReset.addEventListener('click', () => {
+        if (confirm('Bắt đầu ván mới? Bàn cờ sẽ được đặt lại từ đầu.')) {
+          calledNumbers.clear();
+          lastCalledNumber = null;
+          for (let i = 1; i <= 90; i++) {
+            const c = document.getElementById(`cell-${i}`);
+            if (c) c.classList.remove('called');
+          }
+          bigDisplay.textContent = '--';
+          bigDisplay.classList.remove('calling-anim', 'reveal-active');
+          statusBadge.textContent = 'Đang chờ lượt quay';
+          statusBadge.className = 'absolute top-4 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-slate-800 text-slate-400 border border-slate-700';
+          subText.textContent = 'MC đang chuẩn bị lồng cầu...';
+          subText.className = 'text-sm font-medium text-slate-400 tracking-wide text-center';
+          callCount.textContent = 'Đã gọi: 0 / 90';
+          if (currentAudio) currentAudio.pause();
+          window.speechSynthesis.cancel();
+          secretInput.focus();
+        }
+      });
+
+      secretInput.focus();
+    });
+  </script>
+</body>
+</html>
