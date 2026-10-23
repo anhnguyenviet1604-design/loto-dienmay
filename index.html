@@ -626,13 +626,36 @@
       });
       btnTrigger.addEventListener('click', startCalling);
 
-      btnSkipSound.addEventListener('click', () => {
-        if (isCalling && pendingNumber) {
-          if (currentAudio) currentAudio.pause();
-          window.speechSynthesis.cancel();
-          revealNumber(pendingNumber);
-        }
-      });
+ // ĐOẠN MỚI: Mở số ngay lập tức trong mọi tình huống (kể cả đang rao hay vừa mới gõ số)
+btnSkipSound.addEventListener('click', () => {
+  // Tình huống 1: Đang trong quá trình hát rao dở dang -> Ngắt ngay và mở số
+  if (isCalling && pendingNumber) {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+      currentAudio = null;
+    }
+    window.speechSynthesis.cancel();
+    revealNumber(pendingNumber);
+    return;
+  }
+
+  // Tình huống 2: Vừa gõ số vào ô password nhưng muốn mở liền không cần nghe hát rao
+  const rawVal = secretInput.value.trim();
+  const num = parseInt(rawVal, 10);
+
+  if (!isNaN(num) && num >= 1 && num <= 90) {
+    if (calledNumbers.has(num)) {
+      alert(`Số ${num} này đã được gọi trước đó rồi!`);
+      secretInput.value = '';
+      secretInput.focus();
+      return;
+    }
+    revealNumber(num);
+  } else {
+    secretInput.focus();
+  }
+});
 
       // Bắt đầu ván mới
       btnReset.addEventListener('click', () => {
