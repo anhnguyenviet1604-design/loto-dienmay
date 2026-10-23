@@ -91,8 +91,47 @@
       </div>
 
       <p class="text-sm sm:text-base text-slate-400 mt-2 italic">
-        (Bấm chuột hoặc gõ phím bất kỳ để đóng màn hình chúc mừng)
+        (Bấm chuột hoặc bấm phím bất kỳ để đóng màn hình chúc mừng)
       </p>
+    </div>
+  </div>
+
+  <!-- POPUP CÀI ĐẶT 3 FILE NHẠC ĂN MỪNG -->
+  <div id="settingsOverlay" class="fixed inset-0 z-40 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border-2 border-slate-700 rounded-3xl p-6 max-w-md w-full shadow-2xl">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-base font-black text-amber-400 uppercase flex items-center gap-2">
+          ⚙️ Chọn File Nhạc Ăn Mừng
+        </h3>
+        <button id="btnCloseSettings" class="text-slate-400 hover:text-white text-lg font-bold">&times;</button>
+      </div>
+
+      <p class="text-xs text-slate-400 mb-4">
+        Chọn 3 file âm thanh (.mp3, .wav) yêu thích từ máy tính để gán vào 3 nút ăn mừng:
+      </p>
+
+      <div class="space-y-3.5">
+        <div>
+          <label class="block text-xs font-bold text-slate-300 mb-1">Nhạc Ăn Mừng 1 (Nút 1):</label>
+          <input type="file" id="customVicFile1" accept="audio/*" class="w-full text-xs text-slate-300 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-600 file:text-white hover:file:bg-amber-500 cursor-pointer bg-slate-950 rounded-lg p-1.5 border border-slate-800">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-300 mb-1">Nhạc Ăn Mừng 2 (Nút 2):</label>
+          <input type="file" id="customVicFile2" accept="audio/*" class="w-full text-xs text-slate-300 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-rose-600 file:text-white hover:file:bg-rose-500 cursor-pointer bg-slate-950 rounded-lg p-1.5 border border-slate-800">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-300 mb-1">Nhạc Ăn Mừng 3 (Nút 3):</label>
+          <input type="file" id="customVicFile3" accept="audio/*" class="w-full text-xs text-slate-300 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-600 file:text-white hover:file:bg-emerald-500 cursor-pointer bg-slate-950 rounded-lg p-1.5 border border-slate-800">
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <button id="btnSaveSettings" class="w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-sm transition">
+          Hoàn Tất & Áp Dụng
+        </button>
+      </div>
     </div>
   </div>
 
@@ -109,7 +148,7 @@
     <div class="flex items-center gap-2">
       <input type="file" id="folderInput" webkitdirectory directory multiple class="hidden" accept="audio/*">
       <button id="btnFolder" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow">
-        📁 Nạp Thư Mục MP3
+        📁 Nạp 90 Câu Rao MP3
       </button>
       <span id="folderStatus" class="text-xs text-slate-400 bg-slate-950/60 px-2.5 py-1 rounded border border-slate-800">
         Giọng TTS mặc định
@@ -181,23 +220,25 @@
           <span class="text-[11px] font-extrabold uppercase tracking-wider text-rose-400 flex items-center gap-1">
             🏆 Nhạc Ăn Mừng "Kinh!"
           </span>
-          <span class="text-[10px] text-slate-500">Bấm khi có người trúng</span>
+          <button id="btnOpenSettings" class="text-[11px] font-bold text-slate-400 hover:text-amber-400 underline transition flex items-center gap-1">
+            ⚙️ Cài File Nhạc
+          </button>
         </div>
         
         <div class="grid grid-cols-3 gap-2">
-          <button id="btnVictory1" title="Nhạc Kèn Chiến Thắng Rực Rỡ" class="px-2 py-2.5 bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-500 hover:to-yellow-500 active:scale-95 text-white font-bold text-xs rounded-xl shadow-md transition flex flex-col items-center justify-center gap-1">
+          <button id="btnVictory1" title="Nhạc Ăn Mừng 1" class="px-2 py-2.5 bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-500 hover:to-yellow-500 active:scale-95 text-white font-bold text-xs rounded-xl shadow-md transition flex flex-col items-center justify-center gap-1 overflow-hidden">
             <span class="text-base">🎺</span>
-            <span>Kèn Thắng</span>
+            <span id="labelVic1" class="truncate w-full text-center">Nhạc 1</span>
           </button>
 
-          <button id="btnVictory2" title="Tiếng Còi Tiệc & Pháo Hoa Bắn Tưng Bừng" class="px-2 py-2.5 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 active:scale-95 text-white font-bold text-xs rounded-xl shadow-md transition flex flex-col items-center justify-center gap-1">
+          <button id="btnVictory2" title="Nhạc Ăn Mừng 2" class="px-2 py-2.5 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 active:scale-95 text-white font-bold text-xs rounded-xl shadow-md transition flex flex-col items-center justify-center gap-1 overflow-hidden">
             <span class="text-base">🎆</span>
-            <span>Pháo Tiệc</span>
+            <span id="labelVic2" class="truncate w-full text-center">Nhạc 2</span>
           </button>
 
-          <button id="btnVictory3" title="Tiếng Trống Hội & Hoan Hô Náo Nhiệt" class="px-2 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-95 text-white font-bold text-xs rounded-xl shadow-md transition flex flex-col items-center justify-center gap-1">
+          <button id="btnVictory3" title="Nhạc Ăn Mừng 3" class="px-2 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-95 text-white font-bold text-xs rounded-xl shadow-md transition flex flex-col items-center justify-center gap-1 overflow-hidden">
             <span class="text-base">👏</span>
-            <span>Trống Hội</span>
+            <span id="labelVic3" class="truncate w-full text-center">Nhạc 3</span>
           </button>
         </div>
       </div>
@@ -229,11 +270,15 @@
       const customAudioMap = new Map();
       const calledNumbers = new Set();
       let currentAudio = null;
+      let victoryAudio = null;
       let pendingNumber = null;
       let isCalling = false;
       let lastCalledNumber = null;
 
-      // Web Audio API Context cho 3 nút ăn mừng
+      // Lưu trữ 3 file âm thanh ăn mừng do người dùng tự tải lên
+      const customVictoryAudioMap = { 1: null, 2: null, 3: null };
+
+      // Web Audio API Context dự phòng (fallback) khi chưa nạp file
       let audioCtx = null;
       function getAudioContext() {
         if (!audioCtx) {
@@ -245,7 +290,7 @@
         return audioCtx;
       }
 
-      // DOM Elements
+      // DOM Elements chính
       const folderInput = document.getElementById('folderInput');
       const btnFolder = document.getElementById('btnFolder');
       const folderStatus = document.getElementById('folderStatus');
@@ -258,17 +303,55 @@
       const subText = document.getElementById('subText');
       const callCount = document.getElementById('callCount');
 
-      // Elements của Popup Toàn Màn Hình
+      // Popup Chúc mừng
       const winnerOverlay = document.getElementById('winnerOverlay');
       const winnerNumberBadge = document.getElementById('winnerNumberBadge');
       const winnerSubDetails = document.getElementById('winnerSubDetails');
+
+      // Popup Cài đặt 3 file nhạc ăn mừng
+      const settingsOverlay = document.getElementById('settingsOverlay');
+      const btnOpenSettings = document.getElementById('btnOpenSettings');
+      const btnCloseSettings = document.getElementById('btnCloseSettings');
+      const btnSaveSettings = document.getElementById('btnSaveSettings');
+      const customVicFile1 = document.getElementById('customVicFile1');
+      const customVicFile2 = document.getElementById('customVicFile2');
+      const customVicFile3 = document.getElementById('customVicFile3');
+      const labelVic1 = document.getElementById('labelVic1');
+      const labelVic2 = document.getElementById('labelVic2');
+      const labelVic3 = document.getElementById('labelVic3');
 
       // 3 Nút Ăn Mừng
       const btnVictory1 = document.getElementById('btnVictory1');
       const btnVictory2 = document.getElementById('btnVictory2');
       const btnVictory3 = document.getElementById('btnVictory3');
 
-      // Nạp thư mục MP3 giọng thật
+      // Mở / Đóng popup cài đặt nhạc
+      btnOpenSettings.addEventListener('click', () => settingsOverlay.classList.remove('hidden'));
+      btnCloseSettings.addEventListener('click', () => settingsOverlay.classList.add('hidden'));
+      btnSaveSettings.addEventListener('click', () => {
+        // Lưu file 1
+        if (customVicFile1.files[0]) {
+          if (customVictoryAudioMap[1]) URL.revokeObjectURL(customVictoryAudioMap[1]);
+          customVictoryAudioMap[1] = URL.createObjectURL(customVicFile1.files[0]);
+          labelVic1.textContent = customVicFile1.files[0].name.replace(/\.[^/.]+$/, "").slice(0, 10);
+        }
+        // Lưu file 2
+        if (customVicFile2.files[0]) {
+          if (customVictoryAudioMap[2]) URL.revokeObjectURL(customVictoryAudioMap[2]);
+          customVictoryAudioMap[2] = URL.createObjectURL(customVicFile2.files[0]);
+          labelVic2.textContent = customVicFile2.files[0].name.replace(/\.[^/.]+$/, "").slice(0, 10);
+        }
+        // Lưu file 3
+        if (customVicFile3.files[0]) {
+          if (customVictoryAudioMap[3]) URL.revokeObjectURL(customVictoryAudioMap[3]);
+          customVictoryAudioMap[3] = URL.createObjectURL(customVicFile3.files[0]);
+          labelVic3.textContent = customVicFile3.files[0].name.replace(/\.[^/.]+$/, "").slice(0, 10);
+        }
+        settingsOverlay.classList.add('hidden');
+        secretInput.focus();
+      });
+
+      // Nạp thư mục 90 câu rao
       btnFolder.addEventListener('click', () => folderInput.click());
       folderInput.addEventListener('change', (e) => {
         const files = e.target.files;
@@ -311,7 +394,6 @@
         subText.textContent = `Chính thức kêu con số: ${num}`;
         subText.className = 'text-base font-bold text-amber-300 tracking-wide text-center';
 
-        // Đánh dấu bảng 90 số
         calledNumbers.add(num);
         const cell = document.getElementById(`cell-${num}`);
         if (cell) cell.classList.add('called');
@@ -322,7 +404,7 @@
         secretInput.focus();
       }
 
-      // Bắt đầu gọi
+      // Bắt đầu gọi số
       function startCalling() {
         if (isCalling) return;
 
@@ -360,11 +442,14 @@
         playAudioAndWait(num);
       }
 
-      // Phát âm thanh và chờ onended
       function playAudioAndWait(num) {
         if (currentAudio) {
           currentAudio.pause();
           currentAudio.currentTime = 0;
+        }
+        if (victoryAudio) {
+          victoryAudio.pause();
+          victoryAudio.currentTime = 0;
         }
         window.speechSynthesis.cancel();
 
@@ -396,10 +481,7 @@
         }
       }
 
-      // ==========================================
-      // XỬ LÝ MÀN HÌNH CHÚC MỪNG TOÀN MÀN HÌNH
-      // ==========================================
-
+      // Xử lý bật màn hình chúc mừng
       function triggerContinuousConfetti() {
         if (typeof confetti === 'function') {
           confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
@@ -411,7 +493,6 @@
       }
 
       function openWinnerCelebration() {
-        // Cập nhật con số hiển thị trên popup
         if (lastCalledNumber !== null) {
           const formatted = lastCalledNumber < 10 ? `0${lastCalledNumber}` : lastCalledNumber;
           winnerNumberBadge.textContent = `SỐ ${formatted}`;
@@ -421,45 +502,57 @@
           winnerSubDetails.textContent = `Chúc mừng quý khách hàng may mắn trúng thưởng!`;
         }
 
-        // Hiện popup toàn màn hình
         winnerOverlay.classList.remove('hidden');
-
-        // Bắn pháo hoa rực rỡ
         triggerContinuousConfetti();
 
-        // Cập nhật text trên màn hình chính
         statusBadge.textContent = '🏆 XIN CHÚC MỪNG NGƯỜI TRÚNG THƯỞNG!';
         statusBadge.className = 'absolute top-4 px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-gradient-to-r from-yellow-400 to-amber-500 text-slate-950 shadow-xl shadow-amber-500/50 animate-bounce';
       }
 
-      // Đóng màn hình chúc mừng khi click hoặc gõ phím
       function closeWinnerOverlay() {
         winnerOverlay.classList.add('hidden');
+        if (victoryAudio) {
+          victoryAudio.pause();
+          victoryAudio.currentTime = 0;
+        }
         secretInput.focus();
       }
 
       winnerOverlay.addEventListener('click', closeWinnerOverlay);
       window.addEventListener('keydown', (e) => {
-        if (!winnerOverlay.classList.contains('hidden') && e.key === 'Escape') {
+        if (!winnerOverlay.classList.contains('hidden')) {
           closeWinnerOverlay();
         }
       });
 
-      // LOẠI 1: Nhạc Kèn Fanfare Chiến Thắng
-      btnVictory1.addEventListener('click', () => {
+      // Phát nhạc ăn mừng (Ưu tiên MP3 tải lên, không có thì chạy tiếng tổng hợp)
+      function playVictorySound(slotIndex, fallbackFunction) {
         openWinnerCelebration();
 
+        // Dừng âm thanh rao và nhạc ăn mừng trước nếu đang phát
+        if (currentAudio) currentAudio.pause();
+        if (victoryAudio) {
+          victoryAudio.pause();
+          victoryAudio.currentTime = 0;
+        }
+
+        if (customVictoryAudioMap[slotIndex]) {
+          victoryAudio = new Audio(customVictoryAudioMap[slotIndex]);
+          victoryAudio.play().catch(e => console.error("Lỗi phát audio ăn mừng:", e));
+        } else {
+          fallbackFunction();
+        }
+      }
+
+      // Fallback 1: Kèn Fanfare
+      function fallbackSound1() {
         const ctx = getAudioContext();
         const now = ctx.currentTime;
         const notes = [
-          { f: 523.25, d: 0.15, p: 0.00 }, // C5
-          { f: 659.25, d: 0.15, p: 0.18 }, // E5
-          { f: 783.99, d: 0.15, p: 0.36 }, // G5
-          { f: 1046.50, d: 0.50, p: 0.54 }, // C6
-          { f: 783.99, d: 0.18, p: 1.10 }, // G5
-          { f: 1046.50, d: 0.70, p: 1.30 }  // C6
+          { f: 523.25, d: 0.15, p: 0.00 }, { f: 659.25, d: 0.15, p: 0.18 },
+          { f: 783.99, d: 0.15, p: 0.36 }, { f: 1046.50, d: 0.50, p: 0.54 },
+          { f: 783.99, d: 0.18, p: 1.10 }, { f: 1046.50, d: 0.70, p: 1.30 }
         ];
-
         notes.forEach(n => {
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
@@ -473,15 +566,12 @@
           osc.start(now + n.p);
           osc.stop(now + n.p + n.d + 0.1);
         });
-      });
+      }
 
-      // LOẠI 2: Pháo Hoa & Còi Tiệc
-      btnVictory2.addEventListener('click', () => {
-        openWinnerCelebration();
-
+      // Fallback 2: Còi tiệc
+      function fallbackSound2() {
         const ctx = getAudioContext();
         const now = ctx.currentTime;
-
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = 'sawtooth';
@@ -495,15 +585,12 @@
         gain.connect(ctx.destination);
         osc.start(now);
         osc.stop(now + 1.2);
-      });
+      }
 
-      // LOẠI 3: Trống Hội & Vỗ Tay Hoan Hô
-      btnVictory3.addEventListener('click', () => {
-        openWinnerCelebration();
-
+      // Fallback 3: Trống hội
+      function fallbackSound3() {
         const ctx = getAudioContext();
         const now = ctx.currentTime;
-
         const beats = [0.0, 0.2, 0.4, 0.6, 0.75, 0.9, 1.2];
         beats.forEach((timeOffset, idx) => {
           const osc = ctx.createOscillator();
@@ -519,32 +606,12 @@
           osc.start(now + timeOffset);
           osc.stop(now + timeOffset + 0.3);
         });
+      }
 
-        // Giả lập tiếng vỗ tay
-        const bufferSize = ctx.sampleRate * 1.5;
-        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-        const output = noiseBuffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-          output[i] = Math.random() * 2 - 1;
-        }
-
-        const whiteNoise = ctx.createBufferSource();
-        whiteNoise.buffer = noiseBuffer;
-        const filter = ctx.createBiquadFilter();
-        filter.type = 'bandpass';
-        filter.frequency.value = 1200;
-
-        const noiseGain = ctx.createGain();
-        noiseGain.gain.setValueAtTime(0.01, now + 0.3);
-        noiseGain.gain.linearRampToValueAtTime(0.3, now + 0.7);
-        noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 2.0);
-
-        whiteNoise.connect(filter);
-        filter.connect(noiseGain);
-        noiseGain.connect(ctx.destination);
-        whiteNoise.start(now + 0.3);
-        whiteNoise.stop(now + 2.1);
-      });
+      // Gán sự kiện cho 3 nút ăn mừng
+      btnVictory1.addEventListener('click', () => playVictorySound(1, fallbackSound1));
+      btnVictory2.addEventListener('click', () => playVictorySound(2, fallbackSound2));
+      btnVictory3.addEventListener('click', () => playVictorySound(3, fallbackSound3));
 
       // Phím bấm điều khiển
       secretInput.addEventListener('keydown', (e) => {
@@ -577,6 +644,7 @@
           subText.className = 'text-sm font-medium text-slate-400 tracking-wide text-center';
           callCount.textContent = 'Đã gọi: 0 / 90';
           if (currentAudio) currentAudio.pause();
+          if (victoryAudio) victoryAudio.pause();
           window.speechSynthesis.cancel();
           secretInput.focus();
         }
