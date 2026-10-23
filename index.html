@@ -96,57 +96,18 @@
     </div>
   </div>
 
-  <!-- POPUP CÀI ĐẶT 3 FILE NHẠC ĂN MỪNG -->
-  <div id="settingsOverlay" class="fixed inset-0 z-40 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border-2 border-slate-700 rounded-3xl p-6 max-w-md w-full shadow-2xl">
-      <div class="flex justify-between items-center mb-4">
-        <h3 class="text-base font-black text-amber-400 uppercase flex items-center gap-2">
-          ⚙️ Chọn File Nhạc Ăn Mừng
-        </h3>
-        <button id="btnCloseSettings" class="text-slate-400 hover:text-white text-lg font-bold">&times;</button>
-      </div>
-
-      <p class="text-xs text-slate-400 mb-4">
-        Chọn 3 file âm thanh (.mp3, .wav) yêu thích từ máy tính để gán vào 3 nút ăn mừng:
-      </p>
-
-      <div class="space-y-3.5">
-        <div>
-          <label class="block text-xs font-bold text-slate-300 mb-1">Nhạc Ăn Mừng 1 (Nút 1):</label>
-          <input type="file" id="customVicFile1" accept="audio/*" class="w-full text-xs text-slate-300 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-600 file:text-white hover:file:bg-amber-500 cursor-pointer bg-slate-950 rounded-lg p-1.5 border border-slate-800">
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate-300 mb-1">Nhạc Ăn Mừng 2 (Nút 2):</label>
-          <input type="file" id="customVicFile2" accept="audio/*" class="w-full text-xs text-slate-300 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-rose-600 file:text-white hover:file:bg-rose-500 cursor-pointer bg-slate-950 rounded-lg p-1.5 border border-slate-800">
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate-300 mb-1">Nhạc Ăn Mừng 3 (Nút 3):</label>
-          <input type="file" id="customVicFile3" accept="audio/*" class="w-full text-xs text-slate-300 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-600 file:text-white hover:file:bg-emerald-500 cursor-pointer bg-slate-950 rounded-lg p-1.5 border border-slate-800">
-        </div>
-      </div>
-
-      <div class="mt-6">
-        <button id="btnSaveSettings" class="w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-sm transition">
-          Hoàn Tất & Áp Dụng
-        </button>
-      </div>
-    </div>
-  </div>
-
   <!-- CỘT LOGO TRÁI: DÀNH CHO MÁY TÍNH / TV (NỀN TRẮNG, SÁT MÉP) -->
   <aside class="hidden xl:flex fixed left-4 top-20 bottom-4 w-52 flex-col items-center justify-start gap-4 p-3 bg-slate-900/80 border-2 border-slate-800 rounded-3xl backdrop-blur-md z-30 shadow-2xl overflow-y-auto">
     <div class="w-full py-1.5 bg-amber-500/10 border border-amber-500/30 rounded-xl text-center">
       <span class="text-xs font-black uppercase tracking-wider text-amber-400">ĐỒNG HÀNH</span>
     </div>
     
-    <!-- Logo 1 (Đã nạp file anhnguyen.png) -->
+    <!-- Logo 1: Quy Đạt -->
     <div class="w-full h-36 bg-white rounded-2xl p-3 flex items-center justify-center border-2 border-slate-300 hover:border-amber-400 transition shadow-md">
       <img src="quydat.png" alt="Nhà tài trợ 1" class="max-h-full max-w-full object-contain">
     </div>
 
-    <!-- Logo 2 -->
+    <!-- Logo 2: Ánh Nguyễn -->
     <div class="w-full h-36 bg-white rounded-2xl p-3 flex items-center justify-center border-2 border-slate-300 hover:border-amber-400 transition shadow-md">
       <img src="anhnguyen.png" alt="Nhà tài trợ 2" class="max-h-full max-w-full object-contain">
     </div>
@@ -178,7 +139,6 @@
       <img src="https://placehold.co/240x160/ffffff/ef4444?text=LOGO+6" alt="Nhà tài trợ 6" class="max-h-full max-w-full object-contain">
     </div>
   </aside>
-
 
   <!-- KHU VỰC CHÍNH Ở GIỮA (HEADER + LỒNG QUAY + BÀN CỜ) -->
   <div class="w-full max-w-6xl flex flex-col items-center">
@@ -268,9 +228,6 @@
             <span class="text-[11px] font-extrabold uppercase tracking-wider text-rose-400 flex items-center gap-1">
               🏆 Nhạc Ăn Mừng Người Chiến Thắng
             </span>
-            
-              ⚙️ Cài File Nhạc
-            </button>
           </div>
           
           <div class="grid grid-cols-3 gap-2">
@@ -356,14 +313,14 @@
       let isCalling = false;
       let lastCalledNumber = null;
 
-      // ĐOẠN MỚI: Gán trực tiếp file MP3 đã tải lên GitHub
-const customVictoryAudioMap = { 
-  1: 'mung1.mp3', 
-  2: 'mung2.mp3', 
-  3: 'mung3.mp3' 
-};
+      // File MP3 ăn mừng nạp sẵn từ GitHub
+      const customVictoryAudioMap = { 
+        1: 'mung1.mp3', 
+        2: 'mung2.mp3', 
+        3: 'mung3.mp3' 
+      };
 
-      // Web Audio API Context dự phòng (fallback) khi chưa nạp file
+      // Web Audio API Context dự phòng (fallback) khi chưa có file MP3
       let audioCtx = null;
       function getAudioContext() {
         if (!audioCtx) {
@@ -393,48 +350,10 @@ const customVictoryAudioMap = {
       const winnerNumberBadge = document.getElementById('winnerNumberBadge');
       const winnerSubDetails = document.getElementById('winnerSubDetails');
 
-      // Popup Cài đặt 3 file nhạc ăn mừng
-      const settingsOverlay = document.getElementById('settingsOverlay');
-      const btnOpenSettings = document.getElementById('btnOpenSettings');
-      const btnCloseSettings = document.getElementById('btnCloseSettings');
-      const btnSaveSettings = document.getElementById('btnSaveSettings');
-      const customVicFile1 = document.getElementById('customVicFile1');
-      const customVicFile2 = document.getElementById('customVicFile2');
-      const customVicFile3 = document.getElementById('customVicFile3');
-      const labelVic1 = document.getElementById('labelVic1');
-      const labelVic2 = document.getElementById('labelVic2');
-      const labelVic3 = document.getElementById('labelVic3');
-
       // 3 Nút Ăn Mừng
       const btnVictory1 = document.getElementById('btnVictory1');
       const btnVictory2 = document.getElementById('btnVictory2');
       const btnVictory3 = document.getElementById('btnVictory3');
-
-      // Mở / Đóng popup cài đặt nhạc
-      btnOpenSettings.addEventListener('click', () => settingsOverlay.classList.remove('hidden'));
-      btnCloseSettings.addEventListener('click', () => settingsOverlay.classList.add('hidden'));
-      btnSaveSettings.addEventListener('click', () => {
-        // Lưu file 1
-        if (customVicFile1.files[0]) {
-          if (customVictoryAudioMap[1]) URL.revokeObjectURL(customVictoryAudioMap[1]);
-          customVictoryAudioMap[1] = URL.createObjectURL(customVicFile1.files[0]);
-          labelVic1.textContent = customVicFile1.files[0].name.replace(/\.[^/.]+$/, "").slice(0, 10);
-        }
-        // Lưu file 2
-        if (customVicFile2.files[0]) {
-          if (customVictoryAudioMap[2]) URL.revokeObjectURL(customVictoryAudioMap[2]);
-          customVictoryAudioMap[2] = URL.createObjectURL(customVicFile2.files[0]);
-          labelVic2.textContent = customVicFile2.files[0].name.replace(/\.[^/.]+$/, "").slice(0, 10);
-        }
-        // Lưu file 3
-        if (customVicFile3.files[0]) {
-          if (customVictoryAudioMap[3]) URL.revokeObjectURL(customVictoryAudioMap[3]);
-          customVictoryAudioMap[3] = URL.createObjectURL(customVicFile3.files[0]);
-          labelVic3.textContent = customVicFile3.files[0].name.replace(/\.[^/.]+$/, "").slice(0, 10);
-        }
-        settingsOverlay.classList.add('hidden');
-        secretInput.focus();
-      });
 
       // Nạp thư mục 90 câu rao
       btnFolder.addEventListener('click', () => folderInput.click());
@@ -610,27 +529,27 @@ const customVictoryAudioMap = {
         }
       });
 
-// ĐOẠN MỚI: Tự động phát file MP3, nếu file lỗi thì chuyển sang âm thanh còi tiệc mặc định
-function playVictorySound(slotIndex, fallbackFunction) {
-  openWinnerCelebration();
+      // Phát nhạc ăn mừng tự động
+      function playVictorySound(slotIndex, fallbackFunction) {
+        openWinnerCelebration();
 
-  if (currentAudio) currentAudio.pause();
-  if (victoryAudio) {
-    victoryAudio.pause();
-    victoryAudio.currentTime = 0;
-  }
+        if (currentAudio) currentAudio.pause();
+        if (victoryAudio) {
+          victoryAudio.pause();
+          victoryAudio.currentTime = 0;
+        }
 
-  const soundSrc = customVictoryAudioMap[slotIndex];
-  if (soundSrc) {
-    victoryAudio = new Audio(soundSrc);
-    victoryAudio.play().catch(e => {
-      console.warn("Không tìm thấy file nhạc hoặc lỗi phát, chuyển sang âm mặc định:", e);
-      fallbackFunction();
-    });
-  } else {
-    fallbackFunction();
-  }
-}
+        const soundSrc = customVictoryAudioMap[slotIndex];
+        if (soundSrc) {
+          victoryAudio = new Audio(soundSrc);
+          victoryAudio.play().catch(e => {
+            console.warn("Không tìm thấy file nhạc hoặc lỗi phát, chuyển sang âm mặc định:", e);
+            fallbackFunction();
+          });
+        } else {
+          fallbackFunction();
+        }
+      }
 
       // Fallback 1: Kèn Fanfare
       function fallbackSound1() {
