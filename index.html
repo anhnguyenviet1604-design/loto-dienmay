@@ -268,7 +268,7 @@
             <span class="text-[11px] font-extrabold uppercase tracking-wider text-rose-400 flex items-center gap-1">
               🏆 Nhạc Ăn Mừng Người Chiến Thắng
             </span>
-            <button id="btnOpenSettings" class="text-[11px] font-bold text-slate-400 hover:text-amber-400 underline transition flex items-center gap-1">
+            
               ⚙️ Cài File Nhạc
             </button>
           </div>
@@ -356,8 +356,12 @@
       let isCalling = false;
       let lastCalledNumber = null;
 
-      // Lưu trữ 3 file âm thanh ăn mừng do người dùng tự tải lên
-      const customVictoryAudioMap = { 1: null, 2: null, 3: null };
+      // ĐOẠN MỚI: Gán trực tiếp file MP3 đã tải lên GitHub
+const customVictoryAudioMap = { 
+  1: 'mung1.mp3', 
+  2: 'mung2.mp3', 
+  3: 'mung3.mp3' 
+};
 
       // Web Audio API Context dự phòng (fallback) khi chưa nạp file
       let audioCtx = null;
@@ -606,23 +610,27 @@
         }
       });
 
-      // Phát nhạc ăn mừng
-      function playVictorySound(slotIndex, fallbackFunction) {
-        openWinnerCelebration();
+// ĐOẠN MỚI: Tự động phát file MP3, nếu file lỗi thì chuyển sang âm thanh còi tiệc mặc định
+function playVictorySound(slotIndex, fallbackFunction) {
+  openWinnerCelebration();
 
-        if (currentAudio) currentAudio.pause();
-        if (victoryAudio) {
-          victoryAudio.pause();
-          victoryAudio.currentTime = 0;
-        }
+  if (currentAudio) currentAudio.pause();
+  if (victoryAudio) {
+    victoryAudio.pause();
+    victoryAudio.currentTime = 0;
+  }
 
-        if (customVictoryAudioMap[slotIndex]) {
-          victoryAudio = new Audio(customVictoryAudioMap[slotIndex]);
-          victoryAudio.play().catch(e => console.error("Lỗi phát audio ăn mừng:", e));
-        } else {
-          fallbackFunction();
-        }
-      }
+  const soundSrc = customVictoryAudioMap[slotIndex];
+  if (soundSrc) {
+    victoryAudio = new Audio(soundSrc);
+    victoryAudio.play().catch(e => {
+      console.warn("Không tìm thấy file nhạc hoặc lỗi phát, chuyển sang âm mặc định:", e);
+      fallbackFunction();
+    });
+  } else {
+    fallbackFunction();
+  }
+}
 
       // Fallback 1: Kèn Fanfare
       function fallbackSound1() {
