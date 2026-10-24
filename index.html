@@ -9,18 +9,19 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <style>
     @keyframes pulseGlow {
-      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(234, 179, 8, 0.6)); }
-      50% { transform: scale(1.08); filter: drop-shadow(0 0 35px rgba(239, 68, 68, 0.9)); }
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.8)); }
+      50% { transform: scale(1.08); filter: drop-shadow(0 0 35px rgba(239, 68, 68, 1)); }
     }
     .calling-anim {
       animation: pulseGlow 0.9s infinite ease-in-out;
     }
     .called {
-      background: radial-gradient(circle, #f59e0b 0%, #b45309 100%) !important;
+      background: radial-gradient(circle, #ef4444 0%, #b91c1c 100%) !important;
       color: #ffffff !important;
-      font-weight: 800;
-      box-shadow: 0 0 12px rgba(245, 158, 11, 0.8);
-      border-color: #fbbf24 !important;
+      font-weight: 900;
+      box-shadow: 0 0 14px rgba(239, 68, 68, 0.9);
+      border-color: #facc15 !important;
+      transform: scale(1.03);
     }
     @keyframes revealPop {
       0% { transform: scale(0.3); opacity: 0; }
@@ -34,14 +35,15 @@
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
       border-radius: 0.75rem;
-      background-color: rgba(2, 6, 23, 0.85);
-      border: 1px solid rgba(51, 65, 85, 0.8);
-      color: #94a3b8;
-      font-weight: 700;
-      font-size: 0.875rem;
+      background-color: #ffffff;
+      border: 1.5px solid #fed7aa;
+      color: #334155;
+      font-weight: 800;
+      font-size: 0.95rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
       transition: all 0.2s ease;
     }
 
@@ -63,8 +65,8 @@
     }
 
     @keyframes borderPulse {
-      0%, 100% { border-color: rgba(234, 179, 8, 0.8); box-shadow: inset 0 0 30px rgba(234, 179, 8, 0.3), 0 0 50px rgba(234, 179, 8, 0.4); }
-      50% { border-color: rgba(239, 68, 68, 0.9); box-shadow: inset 0 0 45px rgba(239, 68, 68, 0.5), 0 0 80px rgba(239, 68, 68, 0.6); }
+      0%, 100% { border-color: rgba(234, 179, 8, 0.9); box-shadow: inset 0 0 30px rgba(234, 179, 8, 0.4), 0 0 50px rgba(234, 179, 8, 0.5); }
+      50% { border-color: rgba(239, 68, 68, 1); box-shadow: inset 0 0 45px rgba(239, 68, 68, 0.6), 0 0 80px rgba(239, 68, 68, 0.7); }
     }
     .modal-glow {
       animation: borderPulse 0.9s infinite ease-in-out;
@@ -73,10 +75,10 @@
     /* Hiệu ứng chữ sinh nhật ánh kim rực rỡ */
     @keyframes goldShine {
       0%, 100% {
-        filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.8)) drop-shadow(0 0 20px rgba(249, 115, 22, 0.6));
+        filter: drop-shadow(0 2px 8px rgba(220, 38, 38, 0.6));
       }
       50% {
-        filter: drop-shadow(0 0 16px rgba(253, 224, 71, 1)) drop-shadow(0 0 30px rgba(239, 68, 68, 0.9));
+        filter: drop-shadow(0 4px 16px rgba(234, 88, 12, 0.9));
       }
     }
     .birthday-highlight {
@@ -84,14 +86,14 @@
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col items-center p-3 sm:p-5 select-none relative">
+<body class="bg-gradient-to-br from-amber-50 via-rose-50 to-orange-100 text-slate-800 min-h-screen flex flex-col items-center p-3 sm:p-5 select-none relative">
 
   <!-- MÀN HÌNH CHÚC MỪNG TOÀN MÀN HÌNH (POPUP OVERLAY) -->
-  <div id="winnerOverlay" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex flex-col items-center justify-center p-6 cursor-pointer">
-    <div class="max-w-4xl w-full bg-slate-900/95 border-4 border-amber-400 rounded-3xl p-8 sm:p-12 text-center modal-glow relative flex flex-col items-center">
-      <span class="text-5xl sm:text-7xl mb-3">👑 🏆 🎊</span>
+  <div id="winnerOverlay" class="fixed inset-0 z-50 bg-red-950/85 backdrop-blur-md hidden flex flex-col items-center justify-center p-6 cursor-pointer">
+    <div class="max-w-4xl w-full bg-gradient-to-b from-red-900 to-rose-950 border-4 border-amber-400 rounded-3xl p-8 sm:p-12 text-center modal-glow relative flex flex-col items-center shadow-2xl">
+      <span class="text-6xl sm:text-8xl mb-3">👑 🏆 🎊</span>
       
-      <h2 class="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-wider text-amber-400 neon-blink leading-tight mb-4">
+      <h2 class="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-wider text-yellow-300 neon-blink leading-tight mb-4">
         XIN CHÚC MỪNG NGƯỜI TRÚNG THƯỞNG!
       </h2>
 
@@ -99,90 +101,90 @@
         Chúc mừng người chơi may mắn sở hữu con số trúng giải:
       </p>
 
-      <div id="winnerNumberBadge" class="my-6 px-10 py-4 bg-gradient-to-r from-amber-500 via-rose-500 to-amber-500 text-slate-950 text-7xl sm:text-9xl font-black rounded-3xl shadow-2xl tracking-wider">
+      <div id="winnerNumberBadge" class="my-6 px-12 py-5 bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-500 text-red-900 text-7xl sm:text-9xl font-black rounded-3xl shadow-2xl tracking-wider border-4 border-white">
         --
       </div>
 
-      <p class="text-sm sm:text-base text-slate-400 mt-2 italic">
+      <p class="text-sm sm:text-base text-amber-200 mt-2 font-medium">
         (Bấm chuột hoặc bấm phím bất kỳ để đóng màn hình chúc mừng)
       </p>
     </div>
   </div>
 
-  <!-- CỘT LOGO TRÁI: DÀNH CHO MÁY TÍNH / TV (NỀN TRẮNG, SÁT MÉP) -->
-  <aside class="hidden xl:flex fixed left-4 top-20 bottom-4 w-52 flex-col items-center justify-start gap-4 p-3 bg-slate-900/80 border-2 border-slate-800 rounded-3xl backdrop-blur-md z-30 shadow-2xl overflow-y-auto">
-    <div class="w-full py-1.5 bg-amber-500/10 border border-amber-500/30 rounded-xl text-center">
-      <span class="text-xs font-black uppercase tracking-wider text-amber-400">ĐỒNG HÀNH</span>
+  <!-- CỘT LOGO TRÁI: DÀNH CHO MÁY TÍNH / TV (NỀN TRẮNG SỨ VIỀN CAM) -->
+  <aside class="hidden xl:flex fixed left-4 top-20 bottom-4 w-52 flex-col items-center justify-start gap-4 p-3 bg-white/90 border-2 border-amber-200 rounded-3xl backdrop-blur-md z-30 shadow-xl overflow-y-auto">
+    <div class="w-full py-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl text-center shadow-sm">
+      <span class="text-xs font-black uppercase tracking-wider text-white">ĐỒNG HÀNH</span>
     </div>
     
     <!-- Logo 1: Quy Đạt -->
-    <div class="w-full h-36 bg-white rounded-2xl p-3 flex items-center justify-center border-2 border-slate-300 hover:border-amber-400 transition shadow-md">
+    <div class="w-full h-36 bg-white rounded-2xl p-3 flex items-center justify-center border-2 border-orange-100 hover:border-amber-400 transition shadow-sm">
       <img src="quydat.png" alt="Nhà tài trợ 1" class="max-h-full max-w-full object-contain">
     </div>
 
     <!-- Logo 2: Ánh Nguyễn -->
-    <div class="w-full h-36 bg-white rounded-2xl p-3 flex items-center justify-center border-2 border-slate-300 hover:border-amber-400 transition shadow-md">
+    <div class="w-full h-36 bg-white rounded-2xl p-3 flex items-center justify-center border-2 border-orange-100 hover:border-amber-400 transition shadow-sm">
       <img src="anhnguyen.png" alt="Nhà tài trợ 2" class="max-h-full max-w-full object-contain">
     </div>
 
     <!-- Logo 3 -->
-    <div class="w-full h-36 bg-white rounded-2xl p-3 flex items-center justify-center border-2 border-slate-300 hover:border-amber-400 transition shadow-md">
+    <div class="w-full h-36 bg-white rounded-2xl p-3 flex items-center justify-center border-2 border-orange-100 hover:border-amber-400 transition shadow-sm">
       <img src="https://placehold.co/240x160/ffffff/f59e0b?text=LOGO+3" alt="Nhà tài trợ 3" class="max-h-full max-w-full object-contain">
     </div>
   </aside>
 
-  <!-- CỘT LOGO PHẢI: DÀNH CHO MÁY TÍNH / TV (NỀN TRẮNG, SÁT MÉP) -->
-  <aside class="hidden xl:flex fixed right-4 top-20 bottom-4 w-52 flex-col items-center justify-start gap-4 p-3 bg-slate-900/80 border-2 border-slate-800 rounded-3xl backdrop-blur-md z-30 shadow-2xl overflow-y-auto">
-    <div class="w-full py-1.5 bg-rose-500/10 border border-rose-500/30 rounded-xl text-center">
-      <span class="text-xs font-black uppercase tracking-wider text-rose-400">TÀI TRỢ</span>
+  <!-- CỘT LOGO PHẢI: DÀNH CHO MÁY TÍNH / TV (NỀN TRẮNG SỨ VIỀN ĐỎ) -->
+  <aside class="hidden xl:flex fixed right-4 top-20 bottom-4 w-52 flex-col items-center justify-start gap-4 p-3 bg-white/90 border-2 border-rose-200 rounded-3xl backdrop-blur-md z-30 shadow-xl overflow-y-auto">
+    <div class="w-full py-2 bg-gradient-to-r from-rose-600 to-red-600 rounded-xl text-center shadow-sm">
+      <span class="text-xs font-black uppercase tracking-wider text-white">TÀI TRỢ</span>
     </div>
 
     <!-- Logo 4 -->
-    <div class="w-full h-36 bg-white rounded-2xl p-3 flex items-center justify-center border-2 border-slate-300 hover:border-rose-400 transition shadow-md">
+    <div class="w-full h-36 bg-white rounded-2xl p-3 flex items-center justify-center border-2 border-rose-100 hover:border-rose-400 transition shadow-sm">
       <img src="https://placehold.co/240x160/ffffff/ef4444?text=LOGO+4" alt="Nhà tài trợ 4" class="max-h-full max-w-full object-contain">
     </div>
 
     <!-- Logo 5 -->
-    <div class="w-full h-36 bg-white rounded-2xl p-3 flex items-center justify-center border-2 border-slate-300 hover:border-rose-400 transition shadow-md">
+    <div class="w-full h-36 bg-white rounded-2xl p-3 flex items-center justify-center border-2 border-rose-100 hover:border-rose-400 transition shadow-sm">
       <img src="https://placehold.co/240x160/ffffff/ef4444?text=LOGO+5" alt="Nhà tài trợ 5" class="max-h-full max-w-full object-contain">
     </div>
 
     <!-- Logo 6 -->
-    <div class="w-full h-36 bg-white rounded-2xl p-3 flex items-center justify-center border-2 border-slate-300 hover:border-rose-400 transition shadow-md">
+    <div class="w-full h-36 bg-white rounded-2xl p-3 flex items-center justify-center border-2 border-rose-100 hover:border-rose-400 transition shadow-sm">
       <img src="https://placehold.co/240x160/ffffff/ef4444?text=LOGO+6" alt="Nhà tài trợ 6" class="max-h-full max-w-full object-contain">
     </div>
   </aside>
 
-  <!-- KHU VỰC CHÍNH Ở GIỮA (HEADER + LỒNG QUAY + BÀN CỜ) -->
+  <!-- KHU VỰC CHÍNH Ở GIỮA -->
   <div class="w-full max-w-6xl flex flex-col items-center">
 
-    <!-- Header Nổi Bật Dòng Chữ Sinh Nhật -->
-    <header class="w-full flex flex-col items-center justify-between py-3 px-4 sm:px-6 bg-slate-900/90 border-2 border-slate-800 rounded-3xl gap-3 shadow-2xl relative overflow-hidden">
+    <!-- Header Nổi Bật Dòng Chữ Sinh Nhật Tươi Sáng -->
+    <header class="w-full flex flex-col items-center justify-between py-3.5 px-4 sm:px-6 bg-white/95 border-2 border-amber-300 rounded-3xl gap-3 shadow-xl relative overflow-hidden">
       
       <!-- Hàng trên: Nút điều khiển nhanh cho MC -->
-      <div class="w-full flex justify-between items-center pb-2 border-b border-slate-800/80">
+      <div class="w-full flex justify-between items-center pb-2.5 border-b border-orange-100">
         <div class="flex items-center gap-2">
-          <span class="text-xl">🎪</span>
-          <span class="text-xs uppercase font-extrabold tracking-widest text-slate-400">Sân Khấu Lô Tô Trực Tiếp</span>
+          <span class="text-2xl">🎪</span>
+          <span class="text-xs uppercase font-black tracking-wider text-red-600">Sân Khấu Lô Tô Hội Chợ Trực Tiếp</span>
         </div>
         
         <div class="flex items-center gap-2">
           <input type="file" id="folderInput" webkitdirectory directory multiple class="hidden" accept="audio/*">
-          <button id="btnFolder" class="px-3 py-1 bg-emerald-700 hover:bg-emerald-600 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow">
+          <button id="btnFolder" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
             📁 Nạp 90 Câu Rao MP3
           </button>
-          <span id="folderStatus" class="text-xs text-slate-400 bg-slate-950/60 px-2 py-0.5 rounded border border-slate-800">
+          <span id="folderStatus" class="text-xs text-slate-600 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200 font-medium">
             Giọng TTS mặc định
           </span>
-          <button id="btnReset" class="ml-2 px-3 py-1 bg-rose-900/50 hover:bg-rose-800 text-rose-300 text-xs font-semibold rounded-lg border border-rose-800/60 transition">
+          <button id="btnReset" class="ml-2 px-3 py-1.5 bg-rose-100 hover:bg-rose-200 text-rose-700 text-xs font-bold rounded-xl border border-rose-300 transition">
             Ván Mới
           </button>
         </div>
       </div>
 
-      <!-- Hàng Dưới: DÒNG CHỮ MỪNG SINH NHẬT TO, NỔI BẬT NHẤT SÂN KHẤU -->
-      <div class="w-full py-2 px-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-rose-500/20 to-amber-500/10 border border-amber-400/40 text-center shadow-inner">
-        <h1 class="text-xl sm:text-3xl md:text-4xl font-black uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 birthday-highlight leading-snug">
+      <!-- Hàng Dưới: DÒNG CHỮ MỪNG SINH NHẬT TO & RỰC RỠ TRÊN NỀN ĐỎ VÀNG -->
+      <div class="w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-amber-500 border-2 border-yellow-300 text-center shadow-lg">
+        <h1 class="text-xl sm:text-3xl md:text-4xl font-black uppercase tracking-wider text-yellow-300 birthday-highlight leading-snug drop-shadow-md">
           🎂 MỪNG SINH NHẬT LẦN THỨ 9 SIÊU THỊ ĐIỆN MÁY CHỢ LỚN QUẢNG NGÃI 1 🎂
         </h1>
       </div>
@@ -192,29 +194,29 @@
     <!-- Khu Vực Lồng Cầu & Bảng MC -->
     <main class="w-full my-4 grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
       
-      <!-- Màn hình chiếu TV -->
-      <div class="lg:col-span-8 bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-slate-800 rounded-3xl p-6 flex flex-col items-center justify-center relative overflow-hidden shadow-2xl min-h-[300px]">
-        <div id="statusBadge" class="absolute top-4 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-slate-800 text-slate-400 border border-slate-700">
+      <!-- Màn hình chiếu TV: ĐỎ NHUNG VIỀN VÀNG RỰC RỠ -->
+      <div class="lg:col-span-8 bg-gradient-to-b from-red-700 via-rose-800 to-red-900 border-4 border-yellow-400 rounded-3xl p-6 flex flex-col items-center justify-center relative overflow-hidden shadow-2xl min-h-[300px]">
+        <div id="statusBadge" class="absolute top-4 px-5 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-yellow-400 text-red-950 shadow-md">
           Đang chờ lượt quay
         </div>
 
-        <div id="bigDisplay" class="text-8xl sm:text-9xl font-black text-amber-400 my-2 tracking-tight transition-all">
+        <div id="bigDisplay" class="text-8xl sm:text-9xl font-black text-yellow-300 my-2 tracking-tight transition-all drop-shadow-[0_4px_16px_rgba(0,0,0,0.4)]">
           --
         </div>
 
-        <div id="subText" class="text-sm font-medium text-slate-400 tracking-wide text-center">
+        <div id="subText" class="text-sm sm:text-base font-bold text-amber-100 tracking-wide text-center">
           MC đang chuẩn bị lồng cầu...
         </div>
       </div>
 
-      <!-- Bảng Điều Khiển Của MC -->
-      <div class="lg:col-span-4 bg-slate-900 border border-slate-800 rounded-3xl p-5 flex flex-col justify-between shadow-xl">
+      <!-- Bảng Điều Khiển Của MC (Tone trắng sáng, viền vàng cam) -->
+      <div class="lg:col-span-4 bg-white/95 border-2 border-amber-200 rounded-3xl p-5 flex flex-col justify-between shadow-xl">
         <div>
           <div class="flex items-center justify-between mb-2">
-            <label for="secretInput" class="text-xs font-bold uppercase text-slate-400 tracking-wider">
+            <label for="secretInput" class="text-xs font-extrabold uppercase text-slate-500 tracking-wider">
               MC Nhập Số (Ẩn)
             </label>
-            <span id="callCount" class="text-xs font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20">
+            <span id="callCount" class="text-xs font-black text-red-600 bg-red-50 px-2.5 py-0.5 rounded-lg border border-red-200">
               Đã gọi: 0 / 90
             </span>
           </div>
@@ -227,43 +229,43 @@
               inputmode="numeric"
               placeholder="••" 
               autocomplete="off"
-              class="w-full bg-slate-950 border-2 border-slate-700 focus:border-amber-400 rounded-2xl py-2.5 px-4 text-3xl font-black text-center text-amber-300 tracking-[0.5em] focus:outline-none transition shadow-inner"
+              class="w-full bg-slate-50 border-2 border-amber-300 focus:border-red-500 rounded-2xl py-2.5 px-4 text-3xl font-black text-center text-red-600 tracking-[0.5em] focus:outline-none transition shadow-inner"
             />
           </div>
-          <p class="text-[11px] text-slate-500 mt-1.5 text-center">
-            Quay lồng &rarr; gõ 2 số &rarr; bấm <kbd class="px-1.5 py-0.5 bg-slate-800 rounded text-amber-300 border border-slate-700">Enter</kbd>
+          <p class="text-[11px] text-slate-500 mt-1.5 text-center font-medium">
+            Quay lồng &rarr; gõ 2 số &rarr; bấm <kbd class="px-1.5 py-0.5 bg-amber-100 text-red-700 font-bold rounded border border-amber-300">Enter</kbd>
           </p>
 
           <div class="mt-3 space-y-2">
-            <button id="btnTrigger" class="w-full py-3 bg-amber-500 hover:bg-amber-400 active:scale-[0.98] text-slate-950 text-sm font-black rounded-xl uppercase tracking-wider transition shadow-lg shadow-amber-500/20">
+            <button id="btnTrigger" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 active:scale-[0.98] text-white text-sm font-black rounded-xl uppercase tracking-wider transition shadow-lg shadow-orange-500/30">
               🎤 Bắt Đầu Hát Rao
             </button>
-            <button id="btnSkipSound" class="w-full py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg transition">
+            <button id="btnSkipSound" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition border border-slate-200">
               Mở số ngay (Bỏ qua chờ hát)
             </button>
           </div>
         </div>
 
         <!-- KHU VỰC 3 NÚT NHẠC ĂN MỪNG CHIẾN THẮNG -->
-        <div class="mt-4 pt-3 border-t border-slate-800">
+        <div class="mt-4 pt-3 border-t border-orange-100">
           <div class="flex items-center justify-between mb-2">
-            <span class="text-[11px] font-extrabold uppercase tracking-wider text-rose-400 flex items-center gap-1">
+            <span class="text-[11px] font-black uppercase tracking-wider text-red-600 flex items-center gap-1">
               🏆 Nhạc Ăn Mừng Người Chiến Thắng
             </span>
           </div>
           
           <div class="grid grid-cols-3 gap-2">
-            <button id="btnVictory1" title="Nhạc Ăn Mừng 1" class="px-2 py-2.5 bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-500 hover:to-yellow-500 active:scale-95 text-white font-bold text-xs rounded-xl shadow-md transition flex flex-col items-center justify-center gap-1 overflow-hidden">
+            <button id="btnVictory1" title="Nhạc Ăn Mừng 1" class="px-2 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 active:scale-95 text-red-950 font-black text-xs rounded-xl shadow-md transition flex flex-col items-center justify-center gap-1 overflow-hidden border border-amber-300">
               <span class="text-base">🎺</span>
               <span id="labelVic1" class="truncate w-full text-center">Nhạc 1</span>
             </button>
 
-            <button id="btnVictory2" title="Nhạc Ăn Mừng 2" class="px-2 py-2.5 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 active:scale-95 text-white font-bold text-xs rounded-xl shadow-md transition flex flex-col items-center justify-center gap-1 overflow-hidden">
+            <button id="btnVictory2" title="Nhạc Ăn Mừng 2" class="px-2 py-2.5 bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-400 hover:to-red-400 active:scale-95 text-white font-black text-xs rounded-xl shadow-md transition flex flex-col items-center justify-center gap-1 overflow-hidden border border-rose-300">
               <span class="text-base">🎆</span>
               <span id="labelVic2" class="truncate w-full text-center">Nhạc 2</span>
             </button>
 
-            <button id="btnVictory3" title="Nhạc Ăn Mừng 3" class="px-2 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-95 text-white font-bold text-xs rounded-xl shadow-md transition flex flex-col items-center justify-center gap-1 overflow-hidden">
+            <button id="btnVictory3" title="Nhạc Ăn Mừng 3" class="px-2 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-95 text-white font-black text-xs rounded-xl shadow-md transition flex flex-col items-center justify-center gap-1 overflow-hidden border border-emerald-400">
               <span class="text-base">👏</span>
               <span id="labelVic3" class="truncate w-full text-center">Nhạc 3</span>
             </button>
@@ -273,11 +275,11 @@
 
     </main>
 
-    <!-- Bàn cờ ma trận 90 số cố định trên HTML -->
-    <section class="w-full bg-slate-900/60 border border-slate-800 rounded-3xl p-4 sm:p-5 shadow-2xl">
+    <!-- Bàn cờ ma trận 90 số cố định trên HTML (Nền Trắng Sáng, Đỏ Tươi) -->
+    <section class="w-full bg-white/95 border-2 border-amber-200 rounded-3xl p-4 sm:p-5 shadow-xl">
       <div class="flex justify-between items-center mb-3 px-1">
-        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Bảng Dò Số (1 - 90)</span>
-        <span class="text-xs text-amber-400 font-medium">Ô sáng đèn là số đã gọi</span>
+        <span class="text-xs font-black uppercase tracking-wider text-slate-700">Bảng Dò Số (1 - 90)</span>
+        <span class="text-xs text-red-600 font-bold">Ô đỏ nổi bật là số đã gọi</span>
       </div>
       <div class="grid grid-cols-10 gap-1.5 sm:gap-2 text-center" id="boardGrid">
         <div id="cell-1" class="loto-cell">01</div><div id="cell-2" class="loto-cell">02</div><div id="cell-3" class="loto-cell">03</div><div id="cell-4" class="loto-cell">04</div><div id="cell-5" class="loto-cell">05</div><div id="cell-6" class="loto-cell">06</div><div id="cell-7" class="loto-cell">07</div><div id="cell-8" class="loto-cell">08</div><div id="cell-9" class="loto-cell">09</div><div id="cell-10" class="loto-cell">10</div>
@@ -292,32 +294,31 @@
       </div>
     </section>
 
-    <!-- DẢI LOGO NHÀ TÀI TRỢ DÀNH RIÊNG CHO ĐIỆN THOẠI (NẰM DƯỚI BÀN CỜ, TỰ ẨN TRÊN MÁY TÍNH) -->
+    <!-- DẢI LOGO NHÀ TÀI TRỢ DÀNH RIÊNG CHO ĐIỆN THOẠI -->
     <div class="w-full mt-6 mb-8 flex flex-col items-center xl:hidden">
       <div class="flex items-center gap-2 mb-3">
-        <span class="h-[1px] w-8 bg-amber-500/40"></span>
-        <h3 class="text-xs font-black uppercase tracking-wider text-amber-400">Đơn Vị Đồng Hành & Tài Trợ</h3>
-        <span class="h-[1px] w-8 bg-amber-500/40"></span>
+        <span class="h-[2px] w-8 bg-amber-400"></span>
+        <h3 class="text-xs font-black uppercase tracking-wider text-red-600">Đơn Vị Đồng Hành & Tài Trợ</h3>
+        <span class="h-[2px] w-8 bg-amber-400"></span>
       </div>
 
-      <!-- Lưới 3 cột trên điện thoại (Nền trắng tinh) -->
       <div class="grid grid-cols-3 gap-2.5 w-full px-2">
-        <div class="h-20 bg-white rounded-xl p-2 flex items-center justify-center border border-slate-300 shadow-md">
+        <div class="h-20 bg-white rounded-xl p-2 flex items-center justify-center border-2 border-orange-100 shadow-sm">
           <img src="quydat.png" alt="Nhà tài trợ 1" class="max-h-full max-w-full object-contain">
         </div>
-        <div class="h-20 bg-white rounded-xl p-2 flex items-center justify-center border border-slate-300 shadow-md">
+        <div class="h-20 bg-white rounded-xl p-2 flex items-center justify-center border-2 border-orange-100 shadow-sm">
           <img src="anhnguyen.png" alt="Nhà tài trợ 2" class="max-h-full max-w-full object-contain">
         </div>
-        <div class="h-20 bg-white rounded-xl p-2 flex items-center justify-center border border-slate-300 shadow-md">
+        <div class="h-20 bg-white rounded-xl p-2 flex items-center justify-center border-2 border-orange-100 shadow-sm">
           <img src="https://placehold.co/180x120/ffffff/f59e0b?text=LOGO+3" alt="Nhà tài trợ 3" class="max-h-full max-w-full object-contain">
         </div>
-        <div class="h-20 bg-white rounded-xl p-2 flex items-center justify-center border border-slate-300 shadow-md">
+        <div class="h-20 bg-white rounded-xl p-2 flex items-center justify-center border-2 border-rose-100 shadow-sm">
           <img src="https://placehold.co/180x120/ffffff/ef4444?text=LOGO+4" alt="Nhà tài trợ 4" class="max-h-full max-w-full object-contain">
         </div>
-        <div class="h-20 bg-white rounded-xl p-2 flex items-center justify-center border border-slate-300 shadow-md">
+        <div class="h-20 bg-white rounded-xl p-2 flex items-center justify-center border-2 border-rose-100 shadow-sm">
           <img src="https://placehold.co/180x120/ffffff/ef4444?text=LOGO+5" alt="Nhà tài trợ 5" class="max-h-full max-w-full object-contain">
         </div>
-        <div class="h-20 bg-white rounded-xl p-2 flex items-center justify-center border border-slate-300 shadow-md">
+        <div class="h-20 bg-white rounded-xl p-2 flex items-center justify-center border-2 border-rose-100 shadow-sm">
           <img src="https://placehold.co/180x120/ffffff/ef4444?text=LOGO+6" alt="Nhà tài trợ 6" class="max-h-full max-w-full object-contain">
         </div>
       </div>
@@ -342,7 +343,7 @@
         3: 'm3.mp3' 
       };
 
-      // Web Audio API Context dự phòng (fallback) khi chưa có file MP3
+      // Web Audio API Context dự phòng
       let audioCtx = null;
       function getAudioContext() {
         if (!audioCtx) {
@@ -354,7 +355,7 @@
         return audioCtx;
       }
 
-      // DOM Elements chính
+      // DOM Elements
       const folderInput = document.getElementById('folderInput');
       const btnFolder = document.getElementById('btnFolder');
       const folderStatus = document.getElementById('folderStatus');
@@ -367,12 +368,10 @@
       const subText = document.getElementById('subText');
       const callCount = document.getElementById('callCount');
 
-      // Popup Chúc mừng
       const winnerOverlay = document.getElementById('winnerOverlay');
       const winnerNumberBadge = document.getElementById('winnerNumberBadge');
       const winnerSubDetails = document.getElementById('winnerSubDetails');
 
-      // 3 Nút Ăn Mừng
       const btnVictory1 = document.getElementById('btnVictory1');
       const btnVictory2 = document.getElementById('btnVictory2');
       const btnVictory3 = document.getElementById('btnVictory3');
@@ -400,7 +399,7 @@
 
         if (count > 0) {
           folderStatus.textContent = `Đã nạp ${count}/90 MP3`;
-          folderStatus.className = 'text-xs text-emerald-400 font-semibold bg-emerald-950/50 px-2.5 py-1 rounded border border-emerald-800';
+          folderStatus.className = 'text-xs text-emerald-700 font-bold bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-300';
         }
       });
 
@@ -410,15 +409,15 @@
         pendingNumber = null;
         lastCalledNumber = num;
 
-        bigDisplay.classList.remove('calling-anim', 'text-amber-500');
-        bigDisplay.classList.add('reveal-active', 'text-amber-400');
+        bigDisplay.classList.remove('calling-anim');
+        bigDisplay.classList.add('reveal-active');
         bigDisplay.textContent = num < 10 ? `0${num}` : num;
 
         statusBadge.textContent = 'CON SỐ GÌ RA!';
-        statusBadge.className = 'absolute top-4 px-4 py-1 rounded-full text-xs font-extrabold uppercase tracking-widest bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/30';
+        statusBadge.className = 'absolute top-4 px-5 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-yellow-300 text-red-950 shadow-lg';
         
         subText.textContent = `Chính thức kêu con số: ${num}`;
-        subText.className = 'text-base font-bold text-amber-300 tracking-wide text-center';
+        subText.className = 'text-base sm:text-lg font-black text-yellow-200 tracking-wide text-center';
 
         calledNumbers.add(num);
         const cell = document.getElementById(`cell-${num}`);
@@ -458,10 +457,10 @@
         bigDisplay.textContent = '??';
 
         statusBadge.textContent = 'ĐANG HÁT RAO SỐ...';
-        statusBadge.className = 'absolute top-4 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-rose-600 text-white animate-pulse';
+        statusBadge.className = 'absolute top-4 px-5 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-white text-red-600 animate-pulse shadow-md';
 
         subText.textContent = 'Lắng nghe câu vè đoán xem con số mấy...';
-        subText.className = 'text-sm font-semibold text-rose-300 italic text-center';
+        subText.className = 'text-sm sm:text-base font-bold text-amber-100 italic text-center';
 
         secretInput.value = '';
 
@@ -507,13 +506,12 @@
         }
       }
 
-      // Xử lý bật màn hình chúc mừng
       function triggerContinuousConfetti() {
         if (typeof confetti === 'function') {
-          confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
+          confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
           setTimeout(() => {
-            confetti({ particleCount: 70, angle: 60, spread: 60, origin: { x: 0 } });
-            confetti({ particleCount: 70, angle: 120, spread: 60, origin: { x: 1 } });
+            confetti({ particleCount: 80, angle: 60, spread: 60, origin: { x: 0 } });
+            confetti({ particleCount: 80, angle: 120, spread: 60, origin: { x: 1 } });
           }, 300);
         }
       }
@@ -532,7 +530,7 @@
         triggerContinuousConfetti();
 
         statusBadge.textContent = '🏆 XIN CHÚC MỪNG NGƯỜI TRÚNG THƯỞNG!';
-        statusBadge.className = 'absolute top-4 px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-gradient-to-r from-yellow-400 to-amber-500 text-slate-950 shadow-xl shadow-amber-500/50 animate-bounce';
+        statusBadge.className = 'absolute top-4 px-5 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-yellow-300 text-red-950 shadow-xl animate-bounce';
       }
 
       function closeWinnerOverlay() {
@@ -551,7 +549,6 @@
         }
       });
 
-      // Phát nhạc ăn mừng tự động
       function playVictorySound(slotIndex, fallbackFunction) {
         openWinnerCelebration();
 
@@ -637,18 +634,16 @@
         });
       }
 
-      // Gán sự kiện cho 3 nút ăn mừng
       btnVictory1.addEventListener('click', () => playVictorySound(1, fallbackSound1));
       btnVictory2.addEventListener('click', () => playVictorySound(2, fallbackSound2));
       btnVictory3.addEventListener('click', () => playVictorySound(3, fallbackSound3));
 
-      // Phím bấm điều khiển
       secretInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') startCalling();
       });
       btnTrigger.addEventListener('click', startCalling);
 
-      // Mở số ngay lập tức trong mọi tình huống
+      // Mở số ngay lập tức
       btnSkipSound.addEventListener('click', () => {
         if (isCalling && pendingNumber) {
           if (currentAudio) {
@@ -689,9 +684,9 @@
           bigDisplay.textContent = '--';
           bigDisplay.classList.remove('calling-anim', 'reveal-active');
           statusBadge.textContent = 'Đang chờ lượt quay';
-          statusBadge.className = 'absolute top-4 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-slate-800 text-slate-400 border border-slate-700';
+          statusBadge.className = 'absolute top-4 px-5 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-yellow-400 text-red-950 shadow-md';
           subText.textContent = 'MC đang chuẩn bị lồng cầu...';
-          subText.className = 'text-sm font-medium text-slate-400 tracking-wide text-center';
+          subText.className = 'text-sm sm:text-base font-bold text-amber-100 tracking-wide text-center';
           callCount.textContent = 'Đã gọi: 0 / 90';
           if (currentAudio) currentAudio.pause();
           if (victoryAudio) victoryAudio.pause();
