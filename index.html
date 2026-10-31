@@ -8,7 +8,6 @@
   <!-- Thư viện hiệu ứng pháo hoa giấy Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <style>
-    /* Tối ưu phần cứng với GPU transform */
     .called {
       background: radial-gradient(circle, #ef4444 0%, #b91c1c 100%) !important;
       color: #ffffff !important;
@@ -77,7 +76,7 @@
     </div>
   </div>
 
-  <!-- CỘT LOGO TRÁI -->
+  <!-- CỘT LOGO TRÁI (DÀNH CHO PC / TV) -->
   <aside class="hidden xl:flex fixed left-4 top-20 bottom-4 w-52 flex-col items-center justify-start gap-4 p-3 bg-white/95 border border-amber-200 rounded-3xl z-30 shadow-lg overflow-y-auto">
     <div class="w-full py-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl text-center shadow-sm">
       <span class="text-xs font-black uppercase tracking-wider text-white">ĐỒNG HÀNH</span>
@@ -96,7 +95,7 @@
     </div>
   </aside>
 
-  <!-- CỘT LOGO PHẢI -->
+  <!-- CỘT LOGO PHẢI (DÀNH CHO PC / TV) -->
   <aside class="hidden xl:flex fixed right-4 top-20 bottom-4 w-52 flex-col items-center justify-start gap-4 p-3 bg-white/95 border border-rose-200 rounded-3xl z-30 shadow-lg overflow-y-auto">
     <div class="w-full py-2 bg-gradient-to-r from-rose-600 to-red-600 rounded-xl text-center shadow-sm">
       <span class="text-xs font-black uppercase tracking-wider text-white">TÀI TRỢ</span>
@@ -121,25 +120,16 @@
     <!-- Header Nổi Bật -->
     <header class="w-full flex flex-col items-center justify-between py-3 px-4 sm:px-6 bg-white border border-amber-300 rounded-3xl gap-2.5 shadow-md">
       
-      <!-- Hàng trên: Điều khiển nhanh -->
+      <!-- Hàng trên: Tiêu đề sân khấu và nút Ván mới -->
       <div class="w-full flex justify-between items-center pb-2 border-b border-orange-100">
         <div class="flex items-center gap-2">
           <span class="text-xl">🎪</span>
           <span class="text-xs uppercase font-black tracking-wider text-red-600">Sân Khấu Lô Tô Trực Tiếp</span>
         </div>
         
-        <div class="flex items-center gap-2">
-          <input type="file" id="folderInput" webkitdirectory directory multiple class="hidden" accept="audio/*">
-          <button id="btnFolder" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white rounded-lg text-xs font-bold transition flex items-center gap-1 shadow-sm">
-            📁 Nạp 90 Câu Rao MP3
-          </button>
-          <span id="folderStatus" class="text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
-            Giọng TTS mặc định
-          </span>
-          <button id="btnReset" class="ml-2 px-3 py-1 bg-rose-100 hover:bg-rose-200 text-rose-700 text-xs font-bold rounded-lg border border-rose-300 transition">
-            Ván Mới
-          </button>
-        </div>
+        <button id="btnReset" class="px-4 py-1.5 bg-rose-100 hover:bg-rose-200 text-rose-700 text-xs font-bold rounded-xl border border-rose-300 transition shadow-sm">
+          🔄 Ván Mới
+        </button>
       </div>
 
       <!-- DÒNG CHỮ MỪNG SINH NHẬT: NỀN VÀNG, CHỮ XANH DƯƠNG & LOGO -->
@@ -161,7 +151,7 @@
 
     </header>
 
-    <!-- Khu Vực Sân Khấu: LỒNG QUAY VẬT LÝ TỐI ƯU & NÚT QUAY 20S -->
+    <!-- Khu Vực Sân Khấu: LỒNG QUAY CANVAS & NÚT QUAY 15 GIÂY -->
     <main class="w-full my-4 grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
       
       <!-- Lồng Quay Canvas tối ưu hiệu năng -->
@@ -172,15 +162,15 @@
             Sẵn sàng quay số
           </div>
           <div id="timerDisplay" class="hidden px-3 py-0.5 rounded-full text-xs font-black bg-white text-red-600 border border-yellow-300 shadow animate-pulse">
-            ⏱ ĐANG QUAY: <span id="countdownSec" class="text-sm font-extrabold text-red-700">20</span>s
+            ⏱ ĐANG QUAY: <span id="countdownSec" class="text-sm font-extrabold text-red-700">15</span>s
           </div>
         </div>
 
-        <!-- Khung trung tâm -->
+        <!-- Khung trung tâm lồng cầu -->
         <div class="relative w-full flex flex-col items-center justify-center my-auto">
           <canvas id="cageCanvas" width="300" height="200" class="max-w-full"></canvas>
 
-          <!-- Viên Bi Trúng Thưởng -->
+          <!-- Viên Bi Trúng Thưởng rơi ra khi đủ 15s -->
           <div id="ballContainer" class="hidden absolute flex flex-col items-center justify-center z-20">
             <div id="winningBall" class="w-32 h-32 rounded-full bg-gradient-to-br from-yellow-300 via-amber-400 to-orange-500 border-4 border-white shadow-2xl flex items-center justify-center ball-revealed">
               <span id="bigDisplay" class="text-6xl font-black text-red-950 tracking-tighter">
@@ -191,7 +181,7 @@
         </div>
 
         <div id="subText" class="text-sm font-bold text-amber-100 tracking-wide text-center z-10">
-          Bấm nút bên phải để lồng cầu bắt đầu quay 20 giây!
+          Bấm nút bên phải để lồng cầu bắt đầu quay 15 giây!
         </div>
       </div>
 
@@ -207,16 +197,17 @@
             </span>
           </div>
 
+          <!-- NÚT BẮT ĐẦU QUAY 15 GIÂY -->
           <div class="my-2">
             <button id="btnSpinRandom" class="w-full py-4 px-3 bg-gradient-to-r from-red-600 via-orange-500 to-amber-500 hover:from-red-500 hover:to-amber-400 active:scale-[0.98] text-white font-black text-base rounded-2xl uppercase tracking-wider transition shadow-lg shadow-orange-500/30 flex flex-col items-center justify-center gap-0.5 border-2 border-yellow-300">
               <span class="text-2xl">🎰</span>
               <span>QUAY SỐ NGẪU NHIÊN</span>
-              <span class="text-[11px] font-semibold text-yellow-200 lowercase tracking-normal">(tự động xóc lồng và rơi bi sau 20s)</span>
+              <span class="text-[11px] font-semibold text-yellow-200 lowercase tracking-normal">(tự động xóc lồng và rơi bi sau 15s)</span>
             </button>
           </div>
 
           <button id="btnSkipSound" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold rounded-xl transition border border-slate-200">
-            ⚡ Mở số ngay lập tức (Bỏ qua 20s)
+            ⚡ Mở số ngay lập tức (Bỏ qua 15s)
           </button>
         </div>
 
@@ -302,81 +293,21 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const customAudioMap = new Map();
       const calledNumbers = new Set();
-      let currentAudio = null;
       let victoryAudio = null;
+      let spinAudio = null;
       let pendingNumber = null;
       let isCalling = false;
       let lastCalledNumber = null;
 
       let spinTimer = null;
-      let countdownSec = 20;
+      let countdownSec = 15; // 15 GIÂY
 
+      // File âm thanh nạp sẵn từ GitHub
       const customVictoryAudioMap = { 1: 'm1.mp3', 2: 'm2.mp3', 3: 'm3.mp3' };
-
-      // ==========================================
-      // WEB AUDIO API ĐƯỢC TỐI ƯU (KHÔNG TẠO RÁC BỘ NHỚ)
-      // ==========================================
-      let audioCtx = null;
-      function getAudioContext() {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-        return audioCtx;
-      }
-
-      // Tạo sẵn buffer tiếng lách cách cố định một lần duy nhất
-      let rattleBuffer = null;
-      function initRattleBuffer() {
-        const ctx = getAudioContext();
-        const bufferSize = ctx.sampleRate * 0.05; // 50ms tiếng cạch
-        rattleBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-        const data = rattleBuffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.3));
-        }
-      }
-
-      let rattleTimer = null;
-      function startRattleAudio() {
-        stopRattleAudio();
-        if (!rattleBuffer) initRattleBuffer();
-        const ctx = getAudioContext();
-
-        rattleTimer = setInterval(() => {
-          if (!isCalling) return;
-          try {
-            const src = ctx.createBufferSource();
-            src.buffer = rattleBuffer;
-            const filter = ctx.createBiquadFilter();
-            filter.type = 'bandpass';
-            filter.frequency.value = 800 + Math.random() * 600;
-            const gain = ctx.createGain();
-            gain.gain.value = 0.15;
-
-            src.connect(filter);
-            filter.connect(gain);
-            gain.connect(ctx.destination);
-            src.start();
-          } catch(e) {}
-        }, 130);
-      }
-
-      function stopRattleAudio() {
-        if (rattleTimer) {
-          clearInterval(rattleTimer);
-          rattleTimer = null;
-        }
-      }
+      const SPIN_AUDIO_SRC = 'nhacquayso.mp3';
 
       // DOM Elements
-      const folderInput = document.getElementById('folderInput');
-      const btnFolder = document.getElementById('btnFolder');
-      const folderStatus = document.getElementById('folderStatus');
       const btnSpinRandom = document.getElementById('btnSpinRandom');
       const btnSkipSound = document.getElementById('btnSkipSound');
       const btnReset = document.getElementById('btnReset');
@@ -398,7 +329,7 @@
       const btnVictory3 = document.getElementById('btnVictory3');
 
       // ==========================================
-      // LỒNG QUAY CANVAS TỐI ƯU HIỆU NĂNG (60FPS)
+      // LỒNG QUAY CANVAS 60FPS
       // ==========================================
       const canvas = document.getElementById('cageCanvas');
       const ctx = canvas.getContext('2d', { alpha: true });
@@ -409,7 +340,6 @@
       let rotationAngle = 0;
       let rotationSpeed = 0.03;
 
-      // Giảm xuống 20 viên bi nhẹ, không dùng gradient nặng trong canvas
       const ballColors = ['#f59e0b', '#ef4444', '#10b981', '#3b82f6', '#ec4899', '#ffffff'];
       const simBalls = [];
       for (let i = 0; i < 20; i++) {
@@ -426,7 +356,7 @@
       function drawCage() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // 1. Chân đế tối giản
+        // 1. Chân đế
         ctx.strokeStyle = '#fde047';
         ctx.lineWidth = 4;
         ctx.beginPath();
@@ -463,7 +393,7 @@
           const b = simBalls[i];
           b.x += b.vx;
           b.y += b.vy;
-          b.vy += 0.2; // Trọng lực
+          b.vy += 0.2;
 
           if (isCalling) {
             b.vx += (Math.random() - 0.5) * rotationSpeed * 12;
@@ -491,7 +421,7 @@
           ctx.fill();
         }
 
-        // 5. Nan thép xoay (chỉ vẽ 4 nan thay vì 12 nan để tăng fps)
+        // 5. Nan thép xoay
         rotationAngle += rotationSpeed;
         ctx.save();
         ctx.translate(centerX, centerY);
@@ -510,9 +440,9 @@
       requestAnimationFrame(drawCage);
 
       // ==========================================
-      // XỬ LÝ QUAY SỐ 20 GIÂY
+      // XỬ LÝ QUAY SỐ 15 GIÂY & PHÁT NHẠC nhacquayso.mp3
       // ==========================================
-      function startCalling20s() {
+      function startCalling15s() {
         if (isCalling) return;
 
         const available = [];
@@ -536,18 +466,26 @@
         btnSpinRandom.disabled = true;
         btnSpinRandom.classList.add('opacity-50', 'cursor-not-allowed');
 
-        rotationSpeed = 0.28; // Tốc độ vừa đủ tạo hiệu ứng quay tít mà không giật
-        startRattleAudio();
+        rotationSpeed = 0.28; // Tốc độ quay nhanh
 
-        countdownSec = 20;
+        // Dừng các âm thanh cũ & phát nhạc quay số
+        if (victoryAudio) {
+          victoryAudio.pause();
+          victoryAudio.currentTime = 0;
+        }
+        if (!spinAudio) {
+          spinAudio = new Audio(SPIN_AUDIO_SRC);
+        }
+        spinAudio.currentTime = 0;
+        spinAudio.play().catch(e => console.warn('Chưa nạp hoặc không thể phát file nhacquayso.mp3:', e));
+
+        countdownSec = 15; // Bắt đầu từ 15s
         countdownSecEl.textContent = countdownSec;
         timerDisplay.classList.remove('hidden');
 
         statusBadge.textContent = 'ĐANG XÓC LỒNG QUAY...';
         statusBadge.className = 'px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-white text-red-600 animate-pulse shadow-sm';
         subText.textContent = 'Lồng cầu đang đảo đều các viên bi... Chuẩn bị mở bóng!';
-
-        playSpeechOrAudio(selectedNum);
 
         if (spinTimer) clearInterval(spinTimer);
         spinTimer = setInterval(() => {
@@ -569,38 +507,17 @@
         }, 1000);
       }
 
-      function playSpeechOrAudio(num) {
-        if (currentAudio) {
-          currentAudio.pause();
-          currentAudio.currentTime = 0;
-        }
-        if (victoryAudio) {
-          victoryAudio.pause();
-          victoryAudio.currentTime = 0;
-        }
-        window.speechSynthesis.cancel();
-
-        if (customAudioMap.has(num)) {
-          currentAudio = new Audio(customAudioMap.get(num));
-          currentAudio.play().catch(e => console.warn(e));
-          return;
-        }
-
-        if ('speechSynthesis' in window) {
-          const text = `Cờ ra con mấy, con số gì ra, lẳng lặng mà nghe... con số ${num}!`;
-          const utter = new SpeechSynthesisUtterance(text);
-          utter.lang = 'vi-VN';
-          utter.rate = 0.95;
-          window.speechSynthesis.speak(utter);
-        }
-      }
-
       function revealWinningBall(num) {
         if (spinTimer) {
           clearInterval(spinTimer);
           spinTimer = null;
         }
-        stopRattleAudio();
+
+        // Tắt nhạc quay số
+        if (spinAudio) {
+          spinAudio.pause();
+          spinAudio.currentTime = 0;
+        }
 
         isCalling = false;
         pendingNumber = null;
@@ -625,61 +542,20 @@
         if (cell) cell.classList.add('called');
 
         callCount.textContent = `Đã gọi: ${calledNumbers.size} / 90`;
-
-        // Bíp nhẹ báo hiệu
-        try {
-          const ctxA = getAudioContext();
-          const osc = ctxA.createOscillator();
-          const gain = ctxA.createGain();
-          osc.frequency.value = 800;
-          gain.gain.value = 0.2;
-          gain.gain.exponentialRampToValueAtTime(0.001, ctxA.currentTime + 0.4);
-          osc.connect(gain);
-          gain.connect(ctxA.destination);
-          osc.start();
-          osc.stop(ctxA.currentTime + 0.4);
-        } catch(e) {}
       }
 
-      btnSpinRandom.addEventListener('click', startCalling20s);
+      btnSpinRandom.addEventListener('click', startCalling15s);
 
       window.addEventListener('keydown', (e) => {
         if (e.code === 'Space' && !isCalling && winnerOverlay.classList.contains('hidden')) {
           e.preventDefault();
-          startCalling20s();
+          startCalling15s();
         }
       });
 
       btnSkipSound.addEventListener('click', () => {
         if (isCalling && pendingNumber) {
           revealWinningBall(pendingNumber);
-        }
-      });
-
-      // Nạp MP3 90 câu rao
-      btnFolder.addEventListener('click', () => folderInput.click());
-      folderInput.addEventListener('change', (e) => {
-        const files = e.target.files;
-        if (!files.length) return;
-
-        customAudioMap.forEach(url => URL.revokeObjectURL(url));
-        customAudioMap.clear();
-
-        let count = 0;
-        for (const file of files) {
-          const match = file.name.match(/^0*(\d+)\.(mp3|wav|m4a|ogg)$/i);
-          if (match) {
-            const num = parseInt(match[1], 10);
-            if (num >= 1 && num <= 90) {
-              customAudioMap.set(num, URL.createObjectURL(file));
-              count++;
-            }
-          }
-        }
-
-        if (count > 0) {
-          folderStatus.textContent = `Đã nạp ${count}/90 MP3`;
-          folderStatus.className = 'text-xs text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-300';
         }
       });
 
@@ -727,7 +603,10 @@
       function playVictorySound(slotIndex) {
         openWinnerCelebration();
 
-        if (currentAudio) currentAudio.pause();
+        if (spinAudio) {
+          spinAudio.pause();
+          spinAudio.currentTime = 0;
+        }
         if (victoryAudio) {
           victoryAudio.pause();
           victoryAudio.currentTime = 0;
@@ -748,7 +627,14 @@
       btnReset.addEventListener('click', () => {
         if (confirm('Bắt đầu ván mới? Toàn bộ bàn cờ sẽ được đặt lại từ đầu.')) {
           if (spinTimer) clearInterval(spinTimer);
-          stopRattleAudio();
+          if (spinAudio) {
+            spinAudio.pause();
+            spinAudio.currentTime = 0;
+          }
+          if (victoryAudio) {
+            victoryAudio.pause();
+            victoryAudio.currentTime = 0;
+          }
 
           calledNumbers.clear();
           lastCalledNumber = null;
@@ -769,12 +655,8 @@
 
           statusBadge.textContent = 'Sẵn sàng quay số';
           statusBadge.className = 'px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-yellow-400 text-red-950 shadow-sm';
-          subText.textContent = 'Bấm nút bên phải để lồng cầu bắt đầu quay 20 giây!';
+          subText.textContent = 'Bấm nút bên phải để lồng cầu bắt đầu quay 15 giây!';
           callCount.textContent = 'Đã gọi: 0 / 90';
-
-          if (currentAudio) currentAudio.pause();
-          if (victoryAudio) victoryAudio.pause();
-          window.speechSynthesis.cancel();
         }
       });
 
