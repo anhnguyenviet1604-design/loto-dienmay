@@ -290,6 +290,7 @@
       let spinTimer = null;
       let countdownSec = 15;
 
+      const defaultSpinTrack = 'nhacquayso1.mp3';
       const spinPlaylist = [
         'nhacquayso1.mp3',
         'nhacquayso2.mp3',
@@ -428,6 +429,7 @@
         } catch (err) {}
       }
 
+      // Phát ngẫu nhiên 1 trong 4 bài; nếu không có bài 2, 3, 4 thì tự lùi về nhacquayso1.mp3
       function playRandomSpinMusic() {
         stopAudio(spinAudio);
         try {
@@ -438,10 +440,32 @@
             } while (nextIndex === lastPlayedSpinIndex);
           }
           lastPlayedSpinIndex = nextIndex;
-          spinAudio = new Audio(spinPlaylist[nextIndex]);
-          const playPromise = spinAudio.play();
+
+          const selectedTrack = spinPlaylist[nextIndex];
+          const audio = new Audio(selectedTrack);
+          spinAudio = audio;
+
+          const fallbackToTrack1 = () => {
+            if (!isCalling || selectedTrack === defaultSpinTrack) return;
+            stopAudio(spinAudio);
+            const fallbackAudio = new Audio(defaultSpinTrack);
+            spinAudio = fallbackAudio;
+            fallbackAudio.play().catch(e => console.warn('Không phát được nhạc quay số 1:', e));
+          };
+
+          // Lắng nghe lỗi không tìm thấy file hoặc lỗi giải mã (404 / NotSupportedError)
+          audio.addEventListener('error', fallbackToTrack1, { once: true });
+
+          const playPromise = audio.play();
           if (playPromise !== undefined) {
-            playPromise.catch(e => console.warn('Không phát được nhạc quay số:', e));
+            playPromise.catch((err) => {
+              // Nếu lỗi không phải do người dùng chưa tương tác mà do thiếu file -> chạy bài 1
+              if (selectedTrack !== defaultSpinTrack) {
+                fallbackToTrack1();
+              } else {
+                console.warn('Không phát được nhạc quay số:', err);
+              }
+            });
           }
         } catch (err) {
           console.warn('Lỗi khởi tạo Audio:', err);
