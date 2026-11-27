@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lô Tô Chợ Lớn Quảng Ngãi 1 - Mừng Sinh Nhật Thứ 9</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Thư viện hiệu ứng pháo hoa giấy Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <style>
     .called {
@@ -57,19 +56,15 @@
   <div id="winnerOverlay" class="fixed inset-0 z-50 bg-red-950/85 backdrop-blur-sm hidden flex flex-col items-center justify-center p-6 cursor-pointer">
     <div class="max-w-4xl w-full bg-gradient-to-b from-red-900 to-rose-950 border-4 border-amber-400 rounded-3xl p-8 sm:p-12 text-center relative flex flex-col items-center shadow-2xl">
       <span class="text-6xl sm:text-7xl mb-2">👑 🏆 🎊</span>
-      
       <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-wider text-yellow-300 neon-blink leading-tight mb-4">
         XIN CHÚC MỪNG NGƯỜI TRÚNG THƯỞNG!
       </h2>
-
       <p id="winnerSubDetails" class="text-lg sm:text-2xl font-extrabold text-white mt-1">
         Chúc mừng người chơi may mắn sở hữu con số trúng giải:
       </p>
-
       <div id="winnerNumberBadge" class="my-5 px-10 py-4 bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-500 text-red-950 text-6xl sm:text-8xl font-black rounded-3xl shadow-xl tracking-wider border-4 border-white">
         --
       </div>
-
       <p class="text-xs sm:text-sm text-amber-200 mt-2 font-medium">
         (Bấm chuột hoặc bấm phím bất kỳ để đóng)
       </p>
@@ -81,23 +76,15 @@
     <div class="w-full py-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl text-center shadow-sm shrink-0">
       <span class="text-xs font-black uppercase tracking-wider text-white">ĐỒNG HÀNH</span>
     </div>
-    
-    <!-- Logo 1: Quy Đạt -->
     <div class="w-full h-44 bg-white rounded-2xl p-1 flex items-center justify-center border-2 border-orange-200 shadow-md overflow-hidden shrink-0">
       <img src="quydat.png" alt="Nhà tài trợ 1" class="w-full h-full object-contain scale-110" loading="lazy">
     </div>
-
-    <!-- Logo 2: Anh Nguyễn -->
     <div class="w-full h-44 bg-white rounded-2xl p-1 flex items-center justify-center border-2 border-orange-200 shadow-md overflow-hidden shrink-0">
       <img src="anhnguyen.png" alt="Nhà tài trợ 2" class="w-full h-full object-contain scale-110" loading="lazy">
     </div>
-
-    <!-- Logo 3: Gia Hân -->
     <div class="w-full h-44 bg-white rounded-2xl p-1 flex items-center justify-center border-2 border-orange-200 shadow-md overflow-hidden shrink-0">
       <img src="giahan.png" alt="Nhà tài trợ 3" class="w-full h-full object-contain scale-110" loading="lazy">
     </div>
-
-    <!-- Logo 4: Hoàng Nam -->
     <div class="w-full h-44 bg-white rounded-2xl p-1 flex items-center justify-center border-2 border-orange-200 shadow-md overflow-hidden shrink-0">
       <img src="hoangnam.png" alt="Nhà tài trợ 4" class="w-full h-full object-contain scale-110" loading="lazy">
     </div>
@@ -108,23 +95,15 @@
     <div class="w-full py-2 bg-gradient-to-r from-rose-600 to-red-600 rounded-xl text-center shadow-sm shrink-0">
       <span class="text-xs font-black uppercase tracking-wider text-white">TÀI TRỢ</span>
     </div>
-
-    <!-- Logo 5 -->
     <div class="w-full h-44 bg-white rounded-2xl p-1 flex items-center justify-center border-2 border-orange-200 shadow-md overflow-hidden shrink-0">
       <img src="https://placehold.co/240x160/ffffff/ef4444?text=LOGO+5" alt="Nhà tài trợ 5" class="w-full h-full object-contain scale-110" loading="lazy">
     </div>
-
-    <!-- Logo 6 -->
     <div class="w-full h-44 bg-white rounded-2xl p-1 flex items-center justify-center border-2 border-orange-200 shadow-md overflow-hidden shrink-0">
       <img src="https://placehold.co/240x160/ffffff/ef4444?text=LOGO+6" alt="Nhà tài trợ 6" class="w-full h-full object-contain scale-110" loading="lazy">
     </div>
-
-    <!-- Logo 7 -->
     <div class="w-full h-44 bg-white rounded-2xl p-1 flex items-center justify-center border-2 border-orange-200 shadow-md overflow-hidden shrink-0">
       <img src="https://placehold.co/240x160/ffffff/ef4444?text=LOGO+7" alt="Nhà tài trợ 7" class="w-full h-full object-contain scale-110" loading="lazy">
     </div>
-    
-    <!-- Logo 8 -->
     <div class="w-full h-44 bg-white rounded-2xl p-1 flex items-center justify-center border-2 border-orange-200 shadow-md overflow-hidden shrink-0">
       <img src="https://placehold.co/240x160/ffffff/ef4444?text=LOGO+8" alt="Nhà tài trợ 8" class="w-full h-full object-contain scale-110" loading="lazy">
     </div>
@@ -133,46 +112,36 @@
   <!-- KHU VỰC CHÍNH Ở GIỮA -->
   <div class="w-full max-w-6xl flex flex-col items-center">
 
-    <!-- Header Nổi Bật -->
+    <!-- Header -->
     <header class="w-full flex flex-col items-center justify-between py-3 px-4 sm:px-6 bg-white border border-amber-300 rounded-3xl gap-2.5 shadow-md">
-      
-      <!-- Hàng trên: Tiêu đề sân khấu và nút Ván mới -->
       <div class="w-full flex justify-between items-center pb-2 border-b border-orange-100">
         <div class="flex items-center gap-2">
           <span class="text-xl">🎪</span>
           <span class="text-xs uppercase font-black tracking-wider text-red-600">Sân Khấu Lô Tô Trực Tiếp</span>
         </div>
-        
-        <button id="btnReset" class="px-4 py-1.5 bg-rose-100 hover:bg-rose-200 text-rose-700 text-xs font-bold rounded-xl border border-rose-300 transition shadow-sm">
+        <button id="btnReset" type="button" class="px-4 py-1.5 bg-rose-100 hover:bg-rose-200 text-rose-700 text-xs font-bold rounded-xl border border-rose-300 transition shadow-sm cursor-pointer">
           🔄 Ván Mới
         </button>
       </div>
 
-      <!-- DÒNG CHỮ MỪNG SINH NHẬT: NỀN VÀNG, CHỮ XANH DƯƠNG & LOGO -->
       <div class="w-full py-2.5 px-4 rounded-2xl bg-yellow-400 border-2 border-blue-600 text-center shadow-md flex items-center justify-between gap-3">
-        
         <div class="h-10 sm:h-14 shrink-0 flex items-center">
           <img src="chodon.png" alt="Logo Điện Máy Chợ Lớn" class="h-full object-contain rounded-md" onerror="this.src='https://dienmaycholon.vn/public/default/app/images/logo.png'">
         </div>
-
         <h1 class="flex-1 text-sm sm:text-xl md:text-2xl font-black uppercase tracking-wider text-blue-900 leading-tight birthday-text-glow">
           🎂 MỪNG SINH NHẬT LẦN THỨ 9 SIÊU THỊ ĐIỆN MÁY CHỢ LỚN QUẢNG NGÃI 1 🎂
         </h1>
-
         <div class="h-10 sm:h-14 shrink-0 hidden sm:flex items-center">
           <img src="chodon.png" alt="Logo Điện Máy Chợ Lớn" class="h-full object-contain rounded-md" onerror="this.src='https://dienmaycholon.vn/public/default/app/images/logo.png'">
         </div>
-
       </div>
-
     </header>
 
-    <!-- Khu Vực Sân Khấu: LỒNG QUAY CANVAS & NÚT QUAY 15 GIÂY -->
+    <!-- Khu Vực Sân Khấu -->
     <main class="w-full my-4 grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
       
       <!-- Lồng Quay Canvas -->
       <div class="lg:col-span-8 bg-gradient-to-b from-red-700 via-rose-800 to-red-900 border-4 border-yellow-400 rounded-3xl p-4 flex flex-col items-center justify-between relative shadow-xl min-h-[340px]">
-        
         <div class="w-full flex justify-between items-center z-10 px-2">
           <div id="statusBadge" class="px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-yellow-400 text-red-950 shadow-sm">
             Sẵn sàng quay số
@@ -182,11 +151,9 @@
           </div>
         </div>
 
-        <!-- Khung trung tâm lồng cầu -->
         <div class="relative w-full flex flex-col items-center justify-center my-auto">
           <canvas id="cageCanvas" width="300" height="200" class="max-w-full"></canvas>
 
-          <!-- Viên Bi Trúng Thưởng rơi ra khi đủ 15s -->
           <div id="ballContainer" class="hidden absolute flex flex-col items-center justify-center z-20">
             <div id="winningBall" class="w-32 h-32 rounded-full bg-gradient-to-br from-yellow-300 via-amber-400 to-orange-500 border-4 border-white shadow-2xl flex items-center justify-center ball-revealed">
               <span id="bigDisplay" class="text-6xl font-black text-red-950 tracking-tighter">
@@ -213,16 +180,15 @@
             </span>
           </div>
 
-          <!-- NÚT BẮT ĐẦU QUAY 15 GIÂY -->
           <div class="my-2">
-            <button id="btnSpinRandom" class="w-full py-4 px-3 bg-gradient-to-r from-red-600 via-orange-500 to-amber-500 hover:from-red-500 hover:to-amber-400 active:scale-[0.98] text-white font-black text-base rounded-2xl uppercase tracking-wider transition shadow-lg shadow-orange-500/30 flex flex-col items-center justify-center gap-0.5 border-2 border-yellow-300">
+            <button id="btnSpinRandom" type="button" class="w-full py-4 px-3 bg-gradient-to-r from-red-600 via-orange-500 to-amber-500 hover:from-red-500 hover:to-amber-400 active:scale-[0.98] text-white font-black text-base rounded-2xl uppercase tracking-wider transition shadow-lg shadow-orange-500/30 flex flex-col items-center justify-center gap-0.5 border-2 border-yellow-300 cursor-pointer">
               <span class="text-2xl">🎰</span>
               <span>QUAY SỐ NGẪU NHIÊN</span>
               <span class="text-[11px] font-semibold text-yellow-200 lowercase tracking-normal">(tự động xóc lồng và rơi bi sau 15s)</span>
             </button>
           </div>
 
-          <button id="btnSkipSound" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold rounded-xl transition border border-slate-200">
+          <button id="btnSkipSound" type="button" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold rounded-xl transition border border-slate-200 cursor-pointer">
             ⚡ Mở số ngay lập tức (Bỏ qua 15s)
           </button>
         </div>
@@ -236,19 +202,19 @@
           </div>
           
           <div class="grid grid-cols-3 gap-2">
-            <button id="btnVictory1" title="Nhạc Ăn Mừng 1" class="px-2 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 active:scale-95 text-red-950 font-black text-xs rounded-xl shadow-sm transition flex flex-col items-center justify-center gap-1 border border-amber-300">
+            <button id="btnVictory1" type="button" class="px-2 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 active:scale-95 text-red-950 font-black text-xs rounded-xl shadow-sm transition flex flex-col items-center justify-center gap-1 border border-amber-300 cursor-pointer">
               <span class="text-base">🎺</span>
-              <span id="labelVic1" class="truncate w-full text-center">Kèn Thắng</span>
+              <span class="truncate w-full text-center">Kèn Thắng</span>
             </button>
 
-            <button id="btnVictory2" title="Nhạc Ăn Mừng 2" class="px-2 py-2.5 bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-400 hover:to-red-400 active:scale-95 text-white font-black text-xs rounded-xl shadow-sm transition flex flex-col items-center justify-center gap-1 border border-rose-300">
+            <button id="btnVictory2" type="button" class="px-2 py-2.5 bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-400 hover:to-red-400 active:scale-95 text-white font-black text-xs rounded-xl shadow-sm transition flex flex-col items-center justify-center gap-1 border border-rose-300 cursor-pointer">
               <span class="text-base">🎆</span>
-              <span id="labelVic2" class="truncate w-full text-center">Pháo Tiệc</span>
+              <span class="truncate w-full text-center">Pháo Tiệc</span>
             </button>
 
-            <button id="btnVictory3" title="Nhạc Ăn Mừng 3" class="px-2 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-95 text-white font-black text-xs rounded-xl shadow-sm transition flex flex-col items-center justify-center gap-1 border border-emerald-400">
+            <button id="btnVictory3" type="button" class="px-2 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-95 text-white font-black text-xs rounded-xl shadow-sm transition flex flex-col items-center justify-center gap-1 border border-emerald-400 cursor-pointer">
               <span class="text-base">👏</span>
-              <span id="labelVic3" class="truncate w-full text-center">Trống Hội</span>
+              <span class="truncate w-full text-center">Trống Hội</span>
             </button>
           </div>
         </div>
@@ -256,7 +222,7 @@
 
     </main>
 
-    <!-- Bàn cờ ma trận 90 số cố định trên HTML -->
+    <!-- Bàn cờ ma trận 90 số -->
     <section class="w-full bg-white border border-amber-200 rounded-3xl p-4 sm:p-5 shadow-lg">
       <div class="flex justify-between items-center mb-2.5 px-1">
         <span class="text-xs font-black uppercase tracking-wider text-slate-700">Bảng Dò Số (1 - 90)</span>
@@ -275,7 +241,7 @@
       </div>
     </section>
 
-    <!-- DẢI LOGO TRÊN ĐIỆN THOẠI (ĐỦ 8 LOGO FULL KHUNG) -->
+    <!-- DẢI LOGO TRÊN ĐIỆN THOẠI -->
     <div class="w-full mt-6 mb-8 flex flex-col items-center xl:hidden">
       <div class="flex items-center gap-2 mb-3">
         <span class="h-[2px] w-8 bg-amber-400"></span>
@@ -294,4 +260,373 @@
           <img src="giahan.png" alt="Nhà tài trợ 3" class="w-full h-full object-contain scale-110" loading="lazy">
         </div>
         <div class="h-16 sm:h-20 bg-white rounded-xl p-1 flex items-center justify-center border-2 border-orange-200 shadow-sm overflow-hidden">
-          <img src="hoangnam.png" alt="Nhà tài trợ 4" class="
+          <img src="hoangnam.png" alt="Nhà tài trợ 4" class="w-full h-full object-contain scale-110" loading="lazy">
+        </div>
+        <div class="h-16 sm:h-20 bg-white rounded-xl p-1 flex items-center justify-center border-2 border-orange-200 shadow-sm overflow-hidden">
+          <img src="https://placehold.co/180x120/ffffff/ef4444?text=LOGO+5" alt="Nhà tài trợ 5" class="w-full h-full object-contain scale-110" loading="lazy">
+        </div>
+        <div class="h-16 sm:h-20 bg-white rounded-xl p-1 flex items-center justify-center border-2 border-orange-200 shadow-sm overflow-hidden">
+          <img src="https://placehold.co/180x120/ffffff/ef4444?text=LOGO+6" alt="Nhà tài trợ 6" class="w-full h-full object-contain scale-110" loading="lazy">
+        </div>
+        <div class="h-16 sm:h-20 bg-white rounded-xl p-1 flex items-center justify-center border-2 border-orange-200 shadow-sm overflow-hidden">
+          <img src="https://placehold.co/180x120/ffffff/ef4444?text=LOGO+7" alt="Nhà tài trợ 7" class="w-full h-full object-contain scale-110" loading="lazy">
+        </div>
+        <div class="h-16 sm:h-20 bg-white rounded-xl p-1 flex items-center justify-center border-2 border-orange-200 shadow-sm overflow-hidden">
+          <img src="https://placehold.co/180x120/ffffff/ef4444?text=LOGO+8" alt="Nhà tài trợ 8" class="w-full h-full object-contain scale-110" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function() {
+      const calledNumbers = new Set();
+      let victoryAudio = null;
+      let spinAudio = null;
+      let pendingNumber = null;
+      let isCalling = false;
+      let lastCalledNumber = null;
+      let spinTimer = null;
+      let countdownSec = 15;
+
+      const spinPlaylist = [
+        'nhacquayso1.mp3',
+        'nhacquayso2.mp3',
+        'nhacquayso3.mp3',
+        'nhacquayso4.mp3'
+      ];
+      let lastPlayedSpinIndex = -1;
+      const customVictoryAudioMap = { 1: 'm1.mp3', 2: 'm2.mp3', 3: 'm3.mp3' };
+
+      const btnSpinRandom = document.getElementById('btnSpinRandom');
+      const btnSkipSound = document.getElementById('btnSkipSound');
+      const btnReset = document.getElementById('btnReset');
+      const bigDisplay = document.getElementById('bigDisplay');
+      const statusBadge = document.getElementById('statusBadge');
+      const timerDisplay = document.getElementById('timerDisplay');
+      const countdownSecEl = document.getElementById('countdownSec');
+      const subText = document.getElementById('subText');
+      const callCount = document.getElementById('callCount');
+      const ballContainer = document.getElementById('ballContainer');
+      const winningBall = document.getElementById('winningBall');
+      const winnerOverlay = document.getElementById('winnerOverlay');
+      const winnerNumberBadge = document.getElementById('winnerNumberBadge');
+      const winnerSubDetails = document.getElementById('winnerSubDetails');
+      const btnVictory1 = document.getElementById('btnVictory1');
+      const btnVictory2 = document.getElementById('btnVictory2');
+      const btnVictory3 = document.getElementById('btnVictory3');
+
+      // LỒNG QUAY CANVAS
+      const canvas = document.getElementById('cageCanvas');
+      const ctx = canvas.getContext('2d', { alpha: true });
+      const centerX = canvas.width / 2;
+      const centerY = 100;
+      const cageRadius = 70;
+      let rotationAngle = 0;
+      let rotationSpeed = 0.03;
+
+      const ballColors = ['#f59e0b', '#ef4444', '#10b981', '#3b82f6', '#ec4899', '#ffffff'];
+      const simBalls = [];
+      for (let i = 0; i < 20; i++) {
+        simBalls.push({
+          x: centerX + (Math.random() - 0.5) * 50,
+          y: centerY + (Math.random() - 0.5) * 50,
+          vx: (Math.random() - 0.5) * 1.5,
+          vy: (Math.random() - 0.5) * 1.5,
+          r: 6.5,
+          color: ballColors[i % ballColors.length]
+        });
+      }
+
+      function drawCage() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.strokeStyle = '#fde047';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(centerX - 80, 185);
+        ctx.lineTo(centerX - 35, centerY);
+        ctx.lineTo(centerX + 35, centerY);
+        ctx.lineTo(centerX + 80, 185);
+        ctx.stroke();
+
+        ctx.strokeStyle = '#ca8a04';
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(centerX - 90, 185);
+        ctx.lineTo(centerX + 90, 185);
+        ctx.stroke();
+
+        ctx.strokeStyle = '#facc15';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(centerX - 18, centerY + cageRadius, 36, 12);
+
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, cageRadius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.2)';
+        ctx.fill();
+        ctx.strokeStyle = '#facc15';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        const maxDist = cageRadius - 8;
+        for (let i = 0; i < simBalls.length; i++) {
+          const b = simBalls[i];
+          b.x += b.vx;
+          b.y += b.vy;
+          b.vy += 0.2;
+
+          if (isCalling) {
+            b.vx += (Math.random() - 0.5) * rotationSpeed * 12;
+            b.vy += (Math.random() - 0.5) * rotationSpeed * 12;
+          }
+
+          const dx = b.x - centerX;
+          const dy = b.y - centerY;
+          const distSq = dx * dx + dy * dy;
+
+          if (distSq > maxDist * maxDist) {
+            const dist = Math.sqrt(distSq);
+            const nx = dx / dist;
+            const ny = dy / dist;
+            b.x = centerX + nx * maxDist;
+            b.y = centerY + ny * maxDist;
+            const dot = b.vx * nx + b.vy * ny;
+            b.vx = (b.vx - 2 * dot * nx) * 0.7;
+            b.vy = (b.vy - 2 * dot * ny) * 0.7;
+          }
+
+          ctx.fillStyle = b.color;
+          ctx.beginPath();
+          ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        rotationAngle += rotationSpeed;
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.strokeStyle = 'rgba(254, 240, 138, 0.4)';
+        ctx.lineWidth = 1.5;
+        for (let a = 0; a < 4; a++) {
+          const curA = rotationAngle + (a * Math.PI / 4);
+          ctx.beginPath();
+          ctx.ellipse(0, 0, cageRadius, Math.abs(Math.sin(curA)) * cageRadius, curA, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+        ctx.restore();
+
+        requestAnimationFrame(drawCage);
+      }
+      requestAnimationFrame(drawCage);
+
+      function stopAudio(audioObj) {
+        if (!audioObj) return;
+        try {
+          audioObj.pause();
+          audioObj.currentTime = 0;
+        } catch (err) {}
+      }
+
+      function playRandomSpinMusic() {
+        stopAudio(spinAudio);
+        try {
+          let nextIndex = 0;
+          if (spinPlaylist.length > 1) {
+            do {
+              nextIndex = Math.floor(Math.random() * spinPlaylist.length);
+            } while (nextIndex === lastPlayedSpinIndex);
+          }
+          lastPlayedSpinIndex = nextIndex;
+          spinAudio = new Audio(spinPlaylist[nextIndex]);
+          const playPromise = spinAudio.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(e => console.warn('Không phát được nhạc quay số:', e));
+          }
+        } catch (err) {
+          console.warn('Lỗi khởi tạo Audio:', err);
+        }
+      }
+
+      function startCalling15s() {
+        if (isCalling) return;
+
+        const available = [];
+        for (let i = 1; i <= 90; i++) {
+          if (!calledNumbers.has(i)) available.push(i);
+        }
+
+        if (available.length === 0) {
+          alert('Toàn bộ 90 số đã được gọi hết! Hãy bấm Ván Mới để bắt đầu lại.');
+          return;
+        }
+
+        const randomIndex = Math.floor(Math.random() * available.length);
+        pendingNumber = available[randomIndex];
+        isCalling = true;
+
+        ballContainer.classList.add('hidden');
+        winningBall.classList.remove('ball-revealed');
+        btnSpinRandom.disabled = true;
+        btnSpinRandom.classList.add('opacity-50', 'cursor-not-allowed');
+
+        rotationSpeed = 0.28;
+        stopAudio(victoryAudio);
+        playRandomSpinMusic();
+
+        countdownSec = 15;
+        countdownSecEl.textContent = countdownSec;
+        timerDisplay.classList.remove('hidden');
+
+        statusBadge.textContent = 'ĐANG XÓC LỒNG QUAY...';
+        statusBadge.className = 'px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-white text-red-600 animate-pulse shadow-sm';
+        subText.textContent = 'Lồng cầu đang đảo đều các viên bi... Chuẩn bị mở bóng!';
+
+        if (spinTimer) clearInterval(spinTimer);
+        spinTimer = setInterval(() => {
+          countdownSec--;
+          if (countdownSec >= 0) {
+            countdownSecEl.textContent = countdownSec;
+          }
+          if (countdownSec <= 3 && countdownSec > 0) {
+            rotationSpeed = 0.08;
+            statusBadge.textContent = 'BI ĐANG RƠI VÀO MÁNG...';
+          }
+          if (countdownSec <= 0) {
+            clearInterval(spinTimer);
+            spinTimer = null;
+            revealWinningBall(pendingNumber);
+          }
+        }, 1000);
+      }
+
+      function revealWinningBall(num) {
+        if (spinTimer) {
+          clearInterval(spinTimer);
+          spinTimer = null;
+        }
+        stopAudio(spinAudio);
+
+        isCalling = false;
+        pendingNumber = null;
+        lastCalledNumber = num;
+        rotationSpeed = 0.03;
+
+        btnSpinRandom.disabled = false;
+        btnSpinRandom.classList.remove('opacity-50', 'cursor-not-allowed');
+        timerDisplay.classList.add('hidden');
+
+        const formatted = num < 10 ? `0${num}` : num;
+        bigDisplay.textContent = formatted;
+        ballContainer.classList.remove('hidden');
+        winningBall.classList.add('ball-revealed');
+
+        statusBadge.textContent = 'CON SỐ GÌ RA!';
+        statusBadge.className = 'px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-yellow-300 text-red-950 shadow-md';
+        subText.textContent = `Lồng cầu đã thả viên bi trúng: SỐ ${formatted}`;
+
+        calledNumbers.add(num);
+        const cell = document.getElementById(`cell-${num}`);
+        if (cell) cell.classList.add('called');
+
+        callCount.textContent = `Đã gọi: ${calledNumbers.size} / 90`;
+      }
+
+      btnSpinRandom.addEventListener('click', startCalling15s);
+
+      btnSkipSound.addEventListener('click', () => {
+        if (isCalling && pendingNumber !== null) {
+          revealWinningBall(pendingNumber);
+        }
+      });
+
+      function openWinnerCelebration() {
+        if (lastCalledNumber !== null) {
+          const formatted = lastCalledNumber < 10 ? `0${lastCalledNumber}` : lastCalledNumber;
+          winnerNumberBadge.textContent = `SỐ ${formatted}`;
+          winnerSubDetails.textContent = 'Chúc mừng người chơi may mắn sở hữu con số trúng giải:';
+        } else {
+          winnerNumberBadge.textContent = 'K I N H !';
+          winnerSubDetails.textContent = 'Chúc mừng quý khách hàng may mắn trúng thưởng!';
+        }
+
+        winnerOverlay.classList.remove('hidden');
+        if (typeof confetti === 'function') {
+          confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+        }
+
+        statusBadge.textContent = '🏆 XIN CHÚC MỪNG NGƯỜI TRÚNG THƯỞNG!';
+        statusBadge.className = 'px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-yellow-300 text-red-950 shadow-md';
+      }
+
+      function closeWinnerOverlay() {
+        winnerOverlay.classList.add('hidden');
+        stopAudio(victoryAudio);
+      }
+
+      winnerOverlay.addEventListener('click', closeWinnerOverlay);
+
+      window.addEventListener('keydown', (e) => {
+        if (!winnerOverlay.classList.contains('hidden')) {
+          e.preventDefault();
+          closeWinnerOverlay();
+          return;
+        }
+        if (e.code === 'Space' && !isCalling) {
+          e.preventDefault();
+          startCalling15s();
+        }
+      });
+
+      function playVictorySound(slotIndex) {
+        openWinnerCelebration();
+        stopAudio(spinAudio);
+        stopAudio(victoryAudio);
+
+        const soundSrc = customVictoryAudioMap[slotIndex];
+        if (soundSrc) {
+          try {
+            victoryAudio = new Audio(soundSrc);
+            const p = victoryAudio.play();
+            if (p !== undefined) p.catch(e => console.warn(e));
+          } catch (err) {}
+        }
+      }
+
+      btnVictory1.addEventListener('click', () => playVictorySound(1));
+      btnVictory2.addEventListener('click', () => playVictorySound(2));
+      btnVictory3.addEventListener('click', () => playVictorySound(3));
+
+      btnReset.addEventListener('click', () => {
+        if (confirm('Bắt đầu ván mới? Toàn bộ bàn cờ sẽ được đặt lại từ đầu.')) {
+          if (spinTimer) clearInterval(spinTimer);
+          stopAudio(spinAudio);
+          stopAudio(victoryAudio);
+
+          calledNumbers.clear();
+          lastCalledNumber = null;
+          isCalling = false;
+          pendingNumber = null;
+          rotationSpeed = 0.03;
+
+          for (let i = 1; i <= 90; i++) {
+            const c = document.getElementById(`cell-${i}`);
+            if (c) c.classList.remove('called');
+          }
+
+          ballContainer.classList.add('hidden');
+          winningBall.classList.remove('ball-revealed');
+          btnSpinRandom.disabled = false;
+          btnSpinRandom.classList.remove('opacity-50', 'cursor-not-allowed');
+          timerDisplay.classList.add('hidden');
+
+          statusBadge.textContent = 'Sẵn sàng quay số';
+          statusBadge.className = 'px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-yellow-400 text-red-950 shadow-sm';
+          subText.textContent = 'Bấm nút bên phải để lồng cầu bắt đầu quay 15 giây!';
+          callCount.textContent = 'Đã gọi: 0 / 90';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
